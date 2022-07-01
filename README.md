@@ -2,7 +2,7 @@
 ### Todo-List :
 - [x] Be done example
 - [ ] Not be Done example
-### Coding
+### Codeing
 - [ ] 怪物自動尋路+實時烘托
 - [ ] 怪物動作偵測，造成傷害
 - [ ] 子彈、彈道及擊中判定
