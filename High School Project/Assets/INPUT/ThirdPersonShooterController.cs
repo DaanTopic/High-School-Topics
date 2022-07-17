@@ -5,6 +5,7 @@ using Cinemachine;
 using StarterAssets;
 using UnityEngine.InputSystem;
 using System.Threading;
+using UnityEngine.UI;
 
 public class ThirdPersonShooterController : MonoBehaviour {
 
@@ -17,7 +18,8 @@ public class ThirdPersonShooterController : MonoBehaviour {
     [SerializeField] private Transform spawnBulletPosition;
     [SerializeField] private Transform vfxHitGreen;
     [SerializeField] private Transform vfxHitRed;
-
+    public Text AmmoCountTextLabel;
+    [SerializeField] private int num;
     private ThirdPersonController thirdPersonController;
     private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
@@ -28,6 +30,14 @@ public class ThirdPersonShooterController : MonoBehaviour {
         animator = GetComponent<Animator>();
     }
     int time = 0;
+
+
+    private void UqdateAmmoInfo(int _ammo)
+    {
+        AmmoCountTextLabel.text = _ammo.ToString();
+    }
+
+
     private void Update() {
         Vector3 mouseWorldPosition = Vector3.zero;
 
@@ -57,35 +67,47 @@ public class ThirdPersonShooterController : MonoBehaviour {
             thirdPersonController.SetRotateOnMove(true);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 13f));
         }
+
+ 
+
+
         //if (starterAssetsInputs.shoot){
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            num = 100;
+            UqdateAmmoInfo(num);
+        }
         if (Input.GetMouseButton(0)){
             time++;
-           if (time > 5)
-           {
+            if (time > 5 && num > 0)
+            {
                 time = 0;
-                /*
+    
                 // Hit Scan Shoot
                 if (hitTransform != null) {
                     // Hit something
                     if (hitTransform.GetComponent<BulletTarget>() != null) {
                         // Hit target
-                        Instantiate(vfxHitGreen, mouseWorldPosition, Quaternion.identity);
+                       // Instantiate(vfxHitGreen, mouseWorldPosition, Quaternion.identity);
                     } else {
                         // Hit something else
-                        Instantiate(vfxHitRed, mouseWorldPosition, Quaternion.identity);
+                        //Instantiate(vfxHitRed, mouseWorldPosition, Quaternion.identity);
                     }
                 }
-                //*/
-                //*
+
                 // Projectile Shoot
-                
+                UqdateAmmoInfo(num);
+                num--;
                 Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
                 Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-
                 starterAssetsInputs.shoot = false;
-           }
+            }
+            if (num <= 0)
+            {
+                AmmoCountTextLabel.text = "Reload";
+            }
 
-           }
         }
+    }
 }
 
