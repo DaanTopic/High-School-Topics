@@ -32,6 +32,15 @@ public class ThirdPersonShooterController : MonoBehaviour {
     int time = 0;
 
 
+    public float speed;
+
+    public Transform m_Image;
+    public Transform m_Text;
+    // Start is called before the first frame update
+
+    public int targetProcess = 100;
+    private float currentAmout = 0;
+
     private void UqdateAmmoInfo(int _ammo)
     {
         AmmoCountTextLabel.text = _ammo.ToString();
@@ -76,6 +85,8 @@ public class ThirdPersonShooterController : MonoBehaviour {
         {
             num = 100;
             UqdateAmmoInfo(num);
+
+
         }
         if (Input.GetMouseButton(0)){
             time++;
