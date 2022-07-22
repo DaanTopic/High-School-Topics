@@ -165,7 +165,9 @@ namespace StarterAssets
 
         private void LateUpdate()
         {
+
             CameraRotation();
+            
         }
 
         private void AssignAnimationIDs()
