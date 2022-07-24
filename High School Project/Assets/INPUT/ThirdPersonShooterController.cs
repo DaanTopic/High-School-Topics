@@ -39,7 +39,7 @@ public class ThirdPersonShooterController : MonoBehaviour {
     // Start is called before the first frame update
 
     public int targetProcess = 100;
-    private float currentAmout = 0;
+    //private float currentAmout = 0;
 
     private void UqdateAmmoInfo(int _ammo)
     {
