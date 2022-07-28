@@ -8,11 +8,11 @@ public class SelectManager : MonoBehaviour
 {
     public GameObject selectedObject;
     public TextMeshProUGUI objNameText;
-    private Build buildingManager;
+    private BuildingManager buildingManager;
     public GameObject objUi;
 
     void Start(){
-        buildingManager = GameObject.Find("BuildingManager").GetComponent<Build>();
+        buildingManager = GameObject.Find("BuildingManager").GetComponent<BuildingManager>();
     }
     void Update(){
         if (Input.GetMouseButtonDown(0)){
@@ -22,9 +22,9 @@ public class SelectManager : MonoBehaviour
                 if (hitInfo.collider.gameObject.CompareTag("Object")){
                     Select(hitInfo.collider.gameObject);
                 }
-                else { if(selectedObject != null) Deselect();}
             }
         }
+        if (Input.GetMouseButtonDown(1) && selectedObject != null) Deselect();
     }
 
     private void Select(GameObject obj){

@@ -7,7 +7,7 @@ using Inventory.Model;
 using Cinemachine;
 using StarterAssets;
 
-public class Build : MonoBehaviour
+public class BuildingManager : MonoBehaviour
 {
     public GameObject[] gameObjects;
     public GameObject pendingObjects;
@@ -78,6 +78,7 @@ public class Build : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
+                pendingObjects.GetComponent<Collider>().enabled = true;
                 PlaceObject();
             }
             if (Input.GetKeyDown(KeyCode.R))

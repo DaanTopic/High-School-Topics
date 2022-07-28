@@ -105,7 +105,6 @@ public class ThirdPersonShooterController : MonoBehaviour {
                         //Instantiate(vfxHitRed, mouseWorldPosition, Quaternion.identity);
                     }
                 }
-
                 // Projectile Shoot
                 UqdateAmmoInfo(num);
                 num--;
@@ -117,7 +116,6 @@ public class ThirdPersonShooterController : MonoBehaviour {
             {
                 AmmoCountTextLabel.text = "Reload";
             }
-
         }
     }
 }
