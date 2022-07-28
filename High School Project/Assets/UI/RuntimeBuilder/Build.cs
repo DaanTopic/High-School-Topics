@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using Inventory.UI;
 using Inventory.Model;
+using Cinemachine;
+using StarterAssets;
 
 public class Build : MonoBehaviour
 {
@@ -12,8 +14,22 @@ public class Build : MonoBehaviour
     private Vector3 pos;
     private RaycastHit hitInfo;
     [SerializeField] private LayerMask mask;
-    public float rotateAmount ,gridSize;
-    public GameObject buildUI , objUi;
+    public float rotateAmount, gridSize;
+    public GameObject buildUI, objUi;
+
+
+    [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
+    [SerializeField] private GameObject PlayPosition ;
+    private ThirdPersonController thirdPersonController;
+    private StarterAssetsInputs starterAssetsInputs;
+    private Animator animator;
+
+    private void Awake()
+    {
+        thirdPersonController = GetComponent<ThirdPersonController>();
+        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+        animator = GetComponent<Animator>();
+    }
     public static Vector3 FromWorldPositionToCubePosition(Vector3 position)
     {
         Vector3 resut = Vector3.zero;
@@ -26,48 +42,72 @@ public class Build : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
+        {
+            if (buildUI.activeSelf == false)
             {
-                if (buildUI.activeSelf == false)
-                {
-                    buildUI.SetActive(true);
-                    Cursor.lockState = CursorLockMode.Confined;
-                    objUi.SetActive(false);
-                }
-                else
-                {
-                    buildUI.SetActive(false);
-                    Cursor.lockState = CursorLockMode.Locked;
-                }
+                buildUI.SetActive(true);
+                Cursor.lockState = CursorLockMode.Confined;
+                objUi.SetActive(false);
+
+                Vector3 pos = PlayPosition.transform.position;
+                pos.y += 5f;
+       
+                aimVirtualCamera.gameObject.transform.position = pos;
+
+                aimVirtualCamera.gameObject.SetActive(false);
+                aimVirtualCamera.gameObject.SetActive(true);
+                animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 13f));
+
+
             }
-        if(pendingObjects != null){
+            else
+            {
+
+                buildUI.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+
+
+                aimVirtualCamera.gameObject.SetActive(false);
+                animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 13f));
+            }
+        }
+        if (pendingObjects != null)
+        {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             pendingObjects.transform.position = FromWorldPositionToCubePosition(hitInfo.point - ray.direction * 0.001f);
 
-            if (Input.GetMouseButtonDown(0)){
+            if (Input.GetMouseButtonDown(0))
+            {
                 PlaceObject();
             }
-            if (Input.GetKeyDown(KeyCode.R)){
+            if (Input.GetKeyDown(KeyCode.R))
+            {
                 RotateObject();
             }
         }
     }
 
-    public void PlaceObject(){
+    public void PlaceObject()
+    {
         pendingObjects = null;
 
     }
-    public void RotateObject(){
+    public void RotateObject()
+    {
         pendingObjects.transform.Rotate(Vector3.up, rotateAmount);
     }
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hitInfo, 1000, mask)){
+        if (Physics.Raycast(ray, out hitInfo, 1000, mask))
+        {
             pos = hitInfo.point;
         }
     }
 
-    public void SelectObject(int index){
+    public void SelectObject(int index)
+    {
         pendingObjects = Instantiate(gameObjects[index], pos, transform.rotation);
     }
 }
