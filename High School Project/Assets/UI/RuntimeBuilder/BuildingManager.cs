@@ -1,25 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using StarterAssets;
 using System;
 using Inventory.UI;
 using Inventory.Model;
-using Cinemachine;
-using StarterAssets;
 
 public class BuildingManager : MonoBehaviour
 {
     public GameObject[] gameObjects;
     public GameObject pendingObjects;
+    [SerializeField] private Material[] materials;
     private Vector3 pos;
     private RaycastHit hitInfo;
     [SerializeField] private LayerMask mask;
     public float rotateAmount, gridSize;
+    public bool canPlace = true;
     public GameObject buildUI, objUi;
 
 
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
-    [SerializeField] private GameObject PlayPosition ;
+    [SerializeField] private GameObject PlayPosition;
     private ThirdPersonController thirdPersonController;
     private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
@@ -57,15 +59,13 @@ public class BuildingManager : MonoBehaviour
                 aimVirtualCamera.gameObject.SetActive(false);
                 aimVirtualCamera.gameObject.SetActive(true);
                 animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 13f));
-
-
             }
             else
             {
-
+                Destroy(pendingObjects);
+                pendingObjects = null;
                 buildUI.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
-
 
                 aimVirtualCamera.gameObject.SetActive(false);
                 animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 13f));
@@ -76,20 +76,22 @@ public class BuildingManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             pendingObjects.transform.position = FromWorldPositionToCubePosition(hitInfo.point - ray.direction * 0.001f);
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && canPlace)
             {
-                pendingObjects.GetComponent<Collider>().enabled = true;
                 PlaceObject();
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 RotateObject();
             }
+            UpdateMaterials();
         }
     }
 
     public void PlaceObject()
     {
+        pendingObjects.GetComponent<MeshRenderer>().material = materials[2];
+        pendingObjects.GetComponent<Collider>().isTrigger = false;
         pendingObjects = null;
 
     }
@@ -104,6 +106,15 @@ public class BuildingManager : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, 1000, mask))
         {
             pos = hitInfo.point;
+        }
+    }
+
+    void UpdateMaterials(){
+        if(pendingObjects != null){
+            if (canPlace){
+            pendingObjects.GetComponent<MeshRenderer>().material = materials[0];
+            }
+            else pendingObjects.GetComponent<MeshRenderer>().material = materials[1];
         }
     }
 
