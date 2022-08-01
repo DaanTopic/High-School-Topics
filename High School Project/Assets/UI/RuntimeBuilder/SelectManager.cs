@@ -30,9 +30,11 @@ public class SelectManager : MonoBehaviour
     private void Select(GameObject obj){
         if (obj == selectedObject) return;
         if (selectedObject != null) Deselect();
+
         Outline outline = obj.GetComponent<Outline>();
         if(outline == null) obj.AddComponent<Outline>();
         else outline.enabled = true;
+        
         objNameText.text = obj.name;
         objUi.SetActive(true);
         selectedObject = obj;

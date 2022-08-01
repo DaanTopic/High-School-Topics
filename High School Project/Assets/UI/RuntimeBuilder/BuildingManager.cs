@@ -9,15 +9,15 @@ using Inventory.Model;
 
 public class BuildingManager : MonoBehaviour
 {
-    public GameObject[] gameObjects;
+    public GameObject[] gameObjects , objUi;
     public GameObject pendingObjects;
     [SerializeField] private Material[] materials;
     private Vector3 pos;
     private RaycastHit hitInfo;
     [SerializeField] private LayerMask mask;
-    public float rotateAmount, gridSize;
+    public float rotateAmount;
     public bool canPlace = true;
-    public GameObject buildUI, objUi;
+    public GameObject buildUI;
 
 
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
@@ -45,31 +45,7 @@ public class BuildingManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            if (buildUI.activeSelf == false)
-            {
-                buildUI.SetActive(true);
-                Cursor.lockState = CursorLockMode.Confined;
-                objUi.SetActive(false);
-
-                Vector3 pos = PlayPosition.transform.position;
-                pos.y += 5f;
-       
-                aimVirtualCamera.gameObject.transform.position = pos;
-
-                aimVirtualCamera.gameObject.SetActive(false);
-                aimVirtualCamera.gameObject.SetActive(true);
-                animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 13f));
-            }
-            else
-            {
-                Destroy(pendingObjects);
-                pendingObjects = null;
-                buildUI.SetActive(false);
-                Cursor.lockState = CursorLockMode.Locked;
-
-                aimVirtualCamera.gameObject.SetActive(false);
-                animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 13f));
-            }
+            openUI();
         }
         if (pendingObjects != null)
         {
@@ -92,8 +68,8 @@ public class BuildingManager : MonoBehaviour
     {
         pendingObjects.GetComponent<MeshRenderer>().material = materials[2];
         pendingObjects.GetComponent<Collider>().isTrigger = false;
+        objUi[1].SetActive(false);
         pendingObjects = null;
-
     }
     public void RotateObject()
     {
@@ -109,6 +85,41 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
+    private void openUI(){
+        if (buildUI.activeSelf == false)
+            {
+                buildUI.SetActive(true);
+                Cursor.lockState = CursorLockMode.Confined;
+                objUi[0].SetActive(false);
+                objUi[1].SetActive(false);
+
+                Vector3 pos = PlayPosition.transform.position;
+                pos.y += 5f;
+       
+                aimVirtualCamera.gameObject.transform.position = pos;
+
+                aimVirtualCamera.gameObject.SetActive(false);
+                aimVirtualCamera.gameObject.SetActive(true);
+                animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 13f));
+            }
+            else
+            {
+                reset();
+                buildUI.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+
+                aimVirtualCamera.gameObject.SetActive(false);
+                animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 13f));
+            }
+    }
+
+        private void reset(){
+        if(pendingObjects != null){
+            Destroy(pendingObjects);
+        }
+        canPlace = true;
+    }
+
     void UpdateMaterials(){
         if(pendingObjects != null){
             if (canPlace){
@@ -120,6 +131,14 @@ public class BuildingManager : MonoBehaviour
 
     public void SelectObject(int index)
     {
+        reset();
+        objUi[1].SetActive(true);
         pendingObjects = Instantiate(gameObjects[index], pos, transform.rotation);
     }
+
+    public void Cancel(){
+        reset();
+        objUi[1].SetActive(false);
+    }
+
 }
