@@ -47,6 +47,8 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     //
     private float shakeTimer;
+    private float startingIntensity;
+    private float shakeTimerTotal;
     private void UqdateAmmoInfo(int _ammo)
     {
         AmmoCountTextLabel.text = _ammo.ToString();
@@ -57,7 +59,10 @@ public class ThirdPersonShooterController : MonoBehaviour
         CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
             aimVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+        startingIntensity = intensity;
         shakeTimer = time;
+        shakeTimerTotal = time;
+
     }
 
 
@@ -67,13 +72,11 @@ public class ThirdPersonShooterController : MonoBehaviour
         if (shakeTimer > 0)
         {
             shakeTimer -= Time.deltaTime;
-            if (shakeTimer <= 0f)
-            {
-                CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
-                    aimVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
+                aimVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
-            }
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain =
+                Mathf.Lerp(startingIntensity, 0f, shakeTimer / shakeTimerTotal);
         }
 
         //
@@ -152,7 +155,7 @@ public class ThirdPersonShooterController : MonoBehaviour
                 Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
                 Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
                 starterAssetsInputs.shoot = false;
-                ShakeCamera(5f, .1f);
+                ShakeCamera(2f, .1f);
                 
             }
             if (num <= 0)
