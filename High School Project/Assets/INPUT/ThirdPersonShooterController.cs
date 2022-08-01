@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 using System.Threading;
 using UnityEngine.UI;
 
-public class ThirdPersonShooterController : MonoBehaviour {
+public class ThirdPersonShooterController : MonoBehaviour
+{
 
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
     [SerializeField] private float normalSensitivity;
@@ -23,8 +24,10 @@ public class ThirdPersonShooterController : MonoBehaviour {
     private ThirdPersonController thirdPersonController;
     private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
-
-    private void Awake() {
+   
+    private void Awake()
+    {
+      //  aimVirtualCamera = GetComponent<CinemachineVirtualCamera>();
         thirdPersonController = GetComponent<ThirdPersonController>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
@@ -41,25 +44,55 @@ public class ThirdPersonShooterController : MonoBehaviour {
     public int targetProcess = 100;
     //private float currentAmout = 0;
 
+
+    //
+    private float shakeTimer;
     private void UqdateAmmoInfo(int _ammo)
     {
         AmmoCountTextLabel.text = _ammo.ToString();
     }
 
+    public void ShakeCamera(float intensity, float time)
+    {
+        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
+            aimVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+        shakeTimer = time;
+    }
 
-    private void Update() {
+
+    private void Update()
+    {
+        //
+        if (shakeTimer > 0)
+        {
+            shakeTimer -= Time.deltaTime;
+            if (shakeTimer <= 0f)
+            {
+                CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
+                    aimVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
+            }
+        }
+
+        //
+
+
         Vector3 mouseWorldPosition = Vector3.zero;
 
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
         Transform hitTransform = null;
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask)) {
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
+        {
             debugTransform.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
             hitTransform = raycastHit.transform;
         }
 
-        if (starterAssetsInputs.aim) {
+        if (starterAssetsInputs.aim)
+        {
             aimVirtualCamera.gameObject.SetActive(true);
             thirdPersonController.SetSensitivity(aimSensitivity);
             thirdPersonController.SetRotateOnMove(false);
@@ -70,14 +103,16 @@ public class ThirdPersonShooterController : MonoBehaviour {
             Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
 
             transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
-        } else {
+        }
+        else
+        {
             aimVirtualCamera.gameObject.SetActive(false);
             thirdPersonController.SetSensitivity(normalSensitivity);
             thirdPersonController.SetRotateOnMove(true);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 13f));
         }
 
- 
+
 
 
         //if (starterAssetsInputs.shoot){
@@ -88,19 +123,24 @@ public class ThirdPersonShooterController : MonoBehaviour {
 
 
         }
-        if (Input.GetMouseButton(0)){
+        if (Input.GetMouseButton(0))
+        {
             time++;
             if (time > 5 && num > 0)
             {
                 time = 0;
-    
+
                 // Hit Scan Shoot
-                if (hitTransform != null) {
+                if (hitTransform != null)
+                {
                     // Hit something
-                    if (hitTransform.GetComponent<BulletTarget>() != null) {
+                    if (hitTransform.GetComponent<BulletTarget>() != null)
+                    {
                         // Hit target
-                       // Instantiate(vfxHitGreen, mouseWorldPosition, Quaternion.identity);
-                    } else {
+                        // Instantiate(vfxHitGreen, mouseWorldPosition, Quaternion.identity);
+                    }
+                    else
+                    {
                         // Hit something else
                         //Instantiate(vfxHitRed, mouseWorldPosition, Quaternion.identity);
                     }
@@ -108,9 +148,12 @@ public class ThirdPersonShooterController : MonoBehaviour {
                 // Projectile Shoot
                 UqdateAmmoInfo(num);
                 num--;
+                
                 Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
                 Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
                 starterAssetsInputs.shoot = false;
+                ShakeCamera(5f, .1f);
+                
             }
             if (num <= 0)
             {
