@@ -1085,7 +1085,7 @@ MonoBehaviour:
   topTint: {r: 1, g: 1, b: 1, a: 1}
   bottomTint: {r: 0, g: 0, b: 1, a: 1}
   castShadow: 0
-  m_InstantiatedMaterial: {fileID: 1077446907}
+  m_InstantiatedMaterial: {fileID: 1370529796}
 --- !u!114 &353007032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1318,7 +1318,7 @@ MonoBehaviour:
   rangeG: 0
   rangeB: 0
   AdjustedColor: {r: 0.07278389, g: 0.4433962, b: 0.1963213, a: 0}
-  hitPosGizmo: {x: -4.2551904, y: -3.9667377, z: 15.532034}
+  hitPosGizmo: {x: 22.813766, y: -6.9366837, z: -8.8126}
   hitNormal: {x: 0, y: 1, z: 0}
 --- !u!33 &353007033
 MeshFilter:
@@ -3365,33 +3365,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!21 &1077446907
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Custom_GrassComputeHLSL(Clone)
-  m_Shader: {fileID: 4800000, guid: 5fb668cd46f782448928933aa1e662da, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _AmbientAdjustment: 0
-    - _BlendFloor: 0
-    - _Fade: 0.11
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!224 &1107826492 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2902640985189366402, guid: 55ec5082c9fbc824b92f87d599ad3475,
@@ -4054,6 +4027,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1370529796
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Custom_GrassComputeHLSL(Clone)
+  m_Shader: {fileID: 4800000, guid: 5fb668cd46f782448928933aa1e662da, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _AmbientAdjustment: 0
+    - _BlendFloor: 0
+    - _Fade: 0.11
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1 &1414712853
 GameObject:
   m_ObjectHideFlags: 0
@@ -5815,8 +5815,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
-  m_FrequencyGain: 1
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1837438337
 GameObject:

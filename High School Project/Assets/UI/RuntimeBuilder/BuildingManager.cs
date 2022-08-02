@@ -22,14 +22,11 @@ public class BuildingManager : MonoBehaviour
 
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
     [SerializeField] private GameObject PlayPosition;
-    private ThirdPersonController thirdPersonController;
-    private StarterAssetsInputs starterAssetsInputs;
+
     private Animator animator;
 
     private void Awake()
     {
-        thirdPersonController = GetComponent<ThirdPersonController>();
-        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
     }
     public static Vector3 FromWorldPositionToCubePosition(Vector3 position)
@@ -60,8 +57,9 @@ public class BuildingManager : MonoBehaviour
             {
                 RotateObject();
             }
-            UpdateMaterials();
+           // UpdateMaterials();
         }
+        UpdateMaterials();
     }
 
     public void PlaceObject()
@@ -131,7 +129,8 @@ public class BuildingManager : MonoBehaviour
             {
                 pendingObjects.GetComponent<MeshRenderer>().material = materials[0];
             }
-            else pendingObjects.GetComponent<MeshRenderer>().material = materials[1];
+            else 
+                pendingObjects.GetComponent<MeshRenderer>().material = materials[1];
         }
     }
 

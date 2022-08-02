@@ -155,7 +155,7 @@ public class ThirdPersonShooterController : MonoBehaviour
                 Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
                 Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
                 starterAssetsInputs.shoot = false;
-                ShakeCamera(2f, .1f);
+                ShakeCamera(1f, .1f);
                 
             }
             if (num <= 0)
