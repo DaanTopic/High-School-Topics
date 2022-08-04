@@ -49,10 +49,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     private float shakeTimer;
     private float startingIntensity;
     private float shakeTimerTotal;
-    private void UqdateAmmoInfo(int _ammo)
-    {
-        AmmoCountTextLabel.text = _ammo.ToString();
-    }
+
 
     public void ShakeCamera(float intensity, float time)
     {
@@ -64,7 +61,10 @@ public class ThirdPersonShooterController : MonoBehaviour
         shakeTimerTotal = time;
 
     }
-
+    private void UqdateAmmoInfo(int _ammo)
+    {
+        AmmoCountTextLabel.text = _ammo.ToString();
+    }
 
     private void Update()
     {

@@ -144,7 +144,9 @@ public class BuildingManager : MonoBehaviour
     public void Cancel()
     {
         reset();
+        objUi[0].SetActive(false);
         objUi[1].SetActive(false);
+        
     }
 
 }
