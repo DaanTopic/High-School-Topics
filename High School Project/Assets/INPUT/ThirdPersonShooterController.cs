@@ -6,10 +6,10 @@ using StarterAssets;
 using UnityEngine.InputSystem;
 using System.Threading;
 using UnityEngine.UI;
+using UnityEngine.InputSystem.Controls;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
-
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
     [SerializeField] private float normalSensitivity;
     [SerializeField] private float aimSensitivity;
@@ -22,14 +22,15 @@ public class ThirdPersonShooterController : MonoBehaviour
     public Text AmmoCountTextLabel;
     [SerializeField] private int num;
     private ThirdPersonController thirdPersonController;
-    private StarterAssetsInputs starterAssetsInputs;
+    private StarterAssetsInputs _input;
     private Animator animator;
-   
+
+
     private void Awake()
     {
       //  aimVirtualCamera = GetComponent<CinemachineVirtualCamera>();
         thirdPersonController = GetComponent<ThirdPersonController>();
-        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+        _input = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
     }
     int time = 0;
@@ -66,6 +67,10 @@ public class ThirdPersonShooterController : MonoBehaviour
         AmmoCountTextLabel.text = _ammo.ToString();
     }
 
+
+    private float countrecoil = 0;
+    private int recoildelay = 2;
+
     private void Update()
     {
         //
@@ -77,6 +82,8 @@ public class ThirdPersonShooterController : MonoBehaviour
 
             cinemachineBasicMultiChannelPerlin.m_AmplitudeGain =
                 Mathf.Lerp(startingIntensity, 0f, shakeTimer / shakeTimerTotal);
+
+
         }
 
         //
@@ -94,7 +101,7 @@ public class ThirdPersonShooterController : MonoBehaviour
             hitTransform = raycastHit.transform;
         }
 
-        if (starterAssetsInputs.aim)
+        if (_input.aim)
         {
             aimVirtualCamera.gameObject.SetActive(true);
             thirdPersonController.SetSensitivity(aimSensitivity);
@@ -151,18 +158,49 @@ public class ThirdPersonShooterController : MonoBehaviour
                 // Projectile Shoot
                 UqdateAmmoInfo(num);
                 num--;
+                Quaternion quaternion = aimVirtualCamera.m_LookAt.transform.rotation;
+                Vector3 vector3 = aimVirtualCamera.m_LookAt.transform.position;
+                //vector3.y += 0.05f;
                 
+                vector3.y += 0.03f;
+                countrecoil += 0.03f;
+                aimVirtualCamera.m_LookAt.SetPositionAndRotation(vector3 , quaternion);
+               
+  
+
                 Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
                 Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-                starterAssetsInputs.shoot = false;
+                _input.shoot = false;
                 ShakeCamera(1f, .1f);
-                
+
             }
             if (num <= 0)
             {
                 AmmoCountTextLabel.text = "Reload";
             }
+
         }
+        else
+        {
+            recoildelay++;
+            if (recoildelay > 10)
+            {
+                recoildelay = 0;
+                if (countrecoil > 0)
+                {
+                    Quaternion quaternion = aimVirtualCamera.m_LookAt.transform.rotation;
+                    Vector3 vector3 = aimVirtualCamera.m_LookAt.transform.position;
+                    //vector3.y += 0.05f;
+
+                    vector3.y -= 0.05f;
+                    countrecoil -= 0.05f;
+                    aimVirtualCamera.m_LookAt.SetPositionAndRotation(vector3, quaternion);
+                }
+            }
+        }
+
+
     }
+
 }
 
