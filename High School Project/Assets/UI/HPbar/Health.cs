@@ -5,17 +5,27 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public float playerHP;
+    public float HP;
     public Image hPBar;
+    public Sprite[] sprite;
+
     public void TakeDamage(float amount)
     {
-        playerHP -= amount;
-        hPBar.GetComponent<Image>().fillAmount -= amount;
+        HP -= amount;
 
-        if(playerHP <= 0)
+        if (HP <= 0.5f)
         {
-            playerHP = 0;
+            if (HP <= 0.25f) hPBar.sprite = sprite[2];
+            else hPBar.sprite = sprite[1];
+        }
+        else hPBar.sprite = sprite[0];
+
+        if (HP <= 0)
+        {
+            HP = 0;
             Debug.Log("You Died!");
         }
+
+        hPBar.GetComponent<Image>().fillAmount = HP;
     }
 }
