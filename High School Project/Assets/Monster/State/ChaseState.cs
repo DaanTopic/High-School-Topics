@@ -20,7 +20,7 @@ namespace XANFSM.Test
         public override void Act(GameObject npc)
         {
             navAgent = npc.GetComponent<NavMeshAgent>();
-            navAgent.speed = maxspeed * 5 * Time.deltaTime;
+            navAgent.speed = maxspeed * 10 * Time.deltaTime;
             navAgent.destination = player.transform.position;
         }
 
