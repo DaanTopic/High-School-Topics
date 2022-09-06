@@ -1,7 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+
+public enum ZombieStateID
+{
+	None = 0,
+	Idle,
+	Chase
+}
+
+public enum Transition
+{
+	None,
+	Lost,
+	Found
+}
+
 namespace XANFSM { 
 	public abstract class ZombieState
 	{
@@ -30,11 +44,11 @@ namespace XANFSM {
 			}
 			if (map.ContainsKey(trans))
 			{
-				Debug.LogError(GetType() + "/AddTransition()/ transition map has already existed, transition = "+trans);
+				Debug.LogError(GetType() + "/AddTransition()/ transition map has already existed, transition = " + trans);
 				return;
 			}
  
-			map.Add(trans,id);
+			map.Add(trans, id);
 		}
  
 		public void DeleteTransition(Transition trans)
@@ -45,7 +59,7 @@ namespace XANFSM {
 				return;
 			}
 		
-			if (map.ContainsKey(trans)==false)
+			if (map.ContainsKey(trans)== false)
 			{
 				Debug.LogError(GetType() + "/DeleteTransition()/ transition map has not  existed, transition = " + trans);
 				return;
@@ -59,7 +73,7 @@ namespace XANFSM {
             {
 				return map[trans];
             }
- 
+
 			return ZombieStateID.None;
 		}
  

@@ -1,22 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace XANFSM.Test {
 
 	public class NPC : MonoBehaviour
 	{
-        
-        public Vector3 playerPosition;
-        public NavMeshAgent navAgent;
 		private ZombieStateMachine mFSMStateManager;
 
 		void Start()
 		{
 			InitFSM();
-            playerPosition = GameObject.FindWithTag("Player").transform.position;
-            navAgent = GetComponent<NavMeshAgent>();
 		}
 
 		void Update()
@@ -26,11 +20,15 @@ namespace XANFSM.Test {
  
 		void InitFSM() {
 			mFSMStateManager = new ZombieStateMachine();
- 
+
+			ChaseState chaseState = new ChaseState(mFSMStateManager);
+			chaseState.AddTransition(Transition.Lost, ZombieStateID.Idle);
+
 			IdleState idleState = new IdleState(mFSMStateManager);
-			idleState.AddTransition(Transition.Lost, ZombieStateID.Idle);
- 
+			idleState.AddTransition(Transition.Found, ZombieStateID.Chase);
+
 			mFSMStateManager.AddState(idleState);
+			mFSMStateManager.AddState(chaseState);
 		}
 	}	
 }
