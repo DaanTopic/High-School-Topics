@@ -6,35 +6,33 @@ namespace XANFSM {
 	public class ZombieStateMachine 
 	{
 		private Dictionary<ZombieStateID, ZombieState> statesDict = new Dictionary<ZombieStateID, ZombieState>();
-		private ZombieStateID mCurrentStateId;
+		private ZombieStateID mCurrentStateID;
 		private ZombieState mCurrentFSMState;
-
-		public void DoUpdate(GameObject npc) {
+		public void DoUpdate(GameObject npc)
+		{
 			mCurrentFSMState.Act(npc);
 			mCurrentFSMState.Reason(npc);
 		}
-
 		public void AddState(ZombieState fsmState) {
-            if (fsmState==null)
+            if (fsmState == null)
             {
 				Debug.LogError(GetType() + "/AddState()/ fsmState is null");
 				return;
 			}
-           
  
             if (statesDict.ContainsKey(fsmState.MStateID))
             {
-				Debug.LogError(GetType() + "/AddState()/ statesDict had already existed, fsmState.StateID = "+ fsmState.MStateID);
+				Debug.LogError(GetType() + "/AddState()/ statesDict had already existed, fsmState.StateID = " + fsmState.MStateID);
 				return;
 			}
  
 			if (mCurrentFSMState == null)
 			{
 				mCurrentFSMState = fsmState;
-				mCurrentStateId = fsmState.MStateID;
+				mCurrentStateID = fsmState.MStateID;
 			}
  
-			statesDict.Add(fsmState.MStateID,fsmState);
+			statesDict.Add(fsmState.MStateID, fsmState);
 		}
 
 		public void DeleteState(ZombieStateID stateID)
@@ -57,8 +55,6 @@ namespace XANFSM {
 			statesDict.Remove(stateID);
 		}
 
-        //trans
-
 		public void PerformTransition(Transition trans) {
             if (trans == Transition.None)
             {
@@ -72,20 +68,20 @@ namespace XANFSM {
 				return;
 			}
  
-            if (statesDict.ContainsKey(stateID) ==false)
+            if (statesDict.ContainsKey(stateID) == false)
             {
-				Debug.LogError(GetType() + "/PerformTransition()/ statesDict had not stateID，StateID = " +stateID);
+				Debug.LogError(GetType() + "/PerformTransition()/ statesDict had not stateID，StateID = " + stateID);
 				return;
 			}
  
-            if (mCurrentFSMState!=null)
+            if (mCurrentFSMState != null)
             {
 				mCurrentFSMState.DoAfterLeaving();
             }
  
 			ZombieState state = statesDict[stateID];
 			mCurrentFSMState = state;
-			mCurrentStateId = stateID;
+			mCurrentStateID = stateID;
  
 			if (mCurrentFSMState != null)
 			{
