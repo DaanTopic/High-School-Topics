@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TouchDamage : MonoBehaviour
+public class Damage : MonoBehaviour
 {
-    private Health health;
-    void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Player")
         {
-            health.TakeDamage(0.1f);
+            other.gameObject.GetComponent<Health>().TakeDamage(0.1f);
         }
     }
 }
