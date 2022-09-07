@@ -10,7 +10,7 @@ namespace XANFSM.Test
     {
         GameObject player;
         NavMeshAgent navAgent;
-        float maxspeed = 3f;
+
         public ChaseState(ZombieStateMachine zombieStateMachine) : base(zombieStateMachine)
         {
             mStateID = ZombieStateID.Chase;
@@ -20,13 +20,13 @@ namespace XANFSM.Test
         public override void Act(GameObject npc)
         {
             navAgent = npc.GetComponent<NavMeshAgent>();
-            navAgent.speed = maxspeed * 10 * Time.deltaTime;
+            navAgent.isStopped = false;
             navAgent.destination = player.transform.position;
         }
 
         public override void Reason(GameObject npc)
         {
-            if (Vector3.Distance(player.transform.position, npc.transform.position) > 6)
+            if (Vector3.Distance(player.transform.position, npc.transform.position) > 15)
             {
                 mZombieStateMachine.PerformTransition(Transition.Lost);
             }

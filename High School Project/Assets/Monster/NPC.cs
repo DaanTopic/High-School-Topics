@@ -1,34 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace XANFSM.Test {
 
 	public class NPC : MonoBehaviour
 	{
-		private ZombieStateMachine mFSMStateManager;
+		private ZombieStateMachine fsm;
 
 		void Start()
 		{
 			InitFSM();
-		}
+        }
 
 		void Update()
 		{
-			mFSMStateManager.DoUpdate(this.gameObject);
+			fsm.DoUpdate(this.gameObject);
 		}
  
 		void InitFSM() {
-			mFSMStateManager = new ZombieStateMachine();
+			fsm = new ZombieStateMachine();
 
-			ChaseState chaseState = new ChaseState(mFSMStateManager);
+			ChaseState chaseState = new ChaseState(fsm);
 			chaseState.AddTransition(Transition.Lost, ZombieStateID.Idle);
 
-			IdleState idleState = new IdleState(mFSMStateManager);
+			IdleState idleState = new IdleState(fsm);
 			idleState.AddTransition(Transition.Found, ZombieStateID.Chase);
 
-			mFSMStateManager.AddState(idleState);
-			mFSMStateManager.AddState(chaseState);
+			fsm.AddState(idleState);
+			fsm.AddState(chaseState);
 		}
 	}	
 }
