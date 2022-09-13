@@ -6,14 +6,18 @@ public enum ZombieStateID
 {
 	None = 0,
 	Idle,
-	Chase
+	Patrol,
+	Chase,
+	Attack
 }
 
 public enum Transition
 {
 	None,
 	Lost,
-	Found
+	Found,
+	Patrol,
+	CloseToPlayer
 }
 
 namespace XANFSM { 
@@ -24,10 +28,10 @@ namespace XANFSM {
  
 		protected Dictionary<Transition, ZombieStateID> map = new Dictionary<Transition, ZombieStateID>();
 		
-		protected ZombieStateMachine mZombieStateMachine;
+		protected ZombieStateMachine Machine;
  
 		public ZombieState(ZombieStateMachine zombieStateMachine) {
-			mZombieStateMachine = zombieStateMachine;
+			Machine = zombieStateMachine;
 		}
  
 		public void AddTransition(Transition trans, ZombieStateID id)
@@ -47,7 +51,6 @@ namespace XANFSM {
 				Debug.LogError(GetType() + "/AddTransition()/ transition map has already existed, transition = " + trans);
 				return;
 			}
- 
 			map.Add(trans, id);
 		}
  
