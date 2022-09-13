@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
  
-namespace XANFSM.Test { 
+namespace XANFSM.zombie
+{ 
  
 	public class IdleState : ZombieState
     {
         GameObject player;
         NavMeshAgent navAgent;
+        Animator animator;
+        float AiTimes = 0f;
 
         public IdleState(ZombieStateMachine zombieStateMachine) : base(zombieStateMachine)
         {
@@ -19,16 +22,27 @@ namespace XANFSM.Test {
         public override void Act(GameObject npc)
         {
             navAgent = npc.GetComponent<NavMeshAgent>();
+            animator = npc.GetComponent<Animator>();
+            animator.SetFloat("WalkSpeed", 0f);
             navAgent.isStopped = true;
-            navAgent.destination = npc.transform.position;
+
+            UpdateTimes();
         }
 
         public override void Reason(GameObject npc)
         {
             if (Vector3.Distance(player.transform.position, npc.transform.position) < 5)
             {
-                mZombieStateMachine.PerformTransition(Transition.Found);
+                Machine.PerformTransition(Transition.Found);
             }
+            if (AiTimes > 1f)
+            {
+                Machine.PerformTransition(Transition.Patrol);
+            }
+        }
+        private void UpdateTimes()
+        {
+            AiTimes += 0.01f;
         }
     }
 }

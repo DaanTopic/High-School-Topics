@@ -12,6 +12,7 @@ public class Mover : MonoBehaviour
     }
 //移動到目標
     public void MoveTo(Vector3 destination, float speed){
+        navmeshagent.isStopped=false;
         navmeshagent.speed = maxSpeed * Mathf.Clamp01(speed);
         navmeshagent.destination = destination;
     }
@@ -19,4 +20,5 @@ public class Mover : MonoBehaviour
     public void CancelMove(){
         navmeshagent.isStopped=true;
     }
+
 }

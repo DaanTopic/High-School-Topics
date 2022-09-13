@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class AttackState : MonoBehaviour
+namespace XANFSM.zombie
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public class AttackState : ZombieState
     {
-        
+        NavMeshAgent navAgent;
+        Animator animator;
+
+        public AttackState(ZombieStateMachine zombieStateMachine) : base(zombieStateMachine)
+        {
+            mStateID = ZombieStateID.Attack;
+        }
+
+        public override void Act(GameObject npc)
+        {
+            animator = npc.GetComponent<Animator>();
+            navAgent = npc.GetComponent<NavMeshAgent>();
+        }
+
+        public override void Reason(GameObject npc)
+        {
+            
+        }
     }
 }
