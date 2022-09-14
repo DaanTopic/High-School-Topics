@@ -38,13 +38,13 @@ namespace XANFSM.zombie
 			PatrolState patrolState = new PatrolState(fsm);
 			patrolState.AddTransition(Transition.Found, ZombieStateID.Chase);
 
-			//AttackState attackState = new AttackState(fsm);
-			//attackState.AddTransition(Transition.Lost, ZombieStateID.Idle);
-			//attackState.AddTransition(Transition.Found, ZombieStateID.Chase);
+			AttackState attackState = new AttackState(fsm);
+			attackState.AddTransition(Transition.Lost, ZombieStateID.Idle);
+			attackState.AddTransition(Transition.Found, ZombieStateID.Chase);
 
 			fsm.AddState(idleState);
 			fsm.AddState(chaseState);
-			//fsm.AddState(attackState);
+			fsm.AddState(attackState);
 			fsm.AddState(patrolState);
 		}
 	}	

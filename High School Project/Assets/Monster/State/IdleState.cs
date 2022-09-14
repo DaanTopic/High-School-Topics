@@ -10,7 +10,7 @@ namespace XANFSM.zombie
     {
         GameObject player;
         NavMeshAgent navAgent;
-        Animator animator;
+        Animator anim;
         float AiTimes = 0f;
 
         public IdleState(ZombieStateMachine zombieStateMachine) : base(zombieStateMachine)
@@ -22,8 +22,8 @@ namespace XANFSM.zombie
         public override void Act(GameObject npc)
         {
             navAgent = npc.GetComponent<NavMeshAgent>();
-            animator = npc.GetComponent<Animator>();
-            animator.SetFloat("WalkSpeed", 0f);
+            anim = npc.GetComponent<Animator>();
+            anim.SetFloat("WalkSpeed", 0f);
             navAgent.isStopped = true;
 
             UpdateTimes();
