@@ -10,7 +10,7 @@ namespace XANFSM.zombie
     {
         GameObject player;
         NavMeshAgent navAgent;
-        Animator animator;
+        Animator anim;
 
         public ChaseState(ZombieStateMachine zombieStateMachine) : base(zombieStateMachine)
         {
@@ -20,8 +20,8 @@ namespace XANFSM.zombie
 
         public override void Act(GameObject npc)
         {
-            animator = npc.GetComponent<Animator>();
-            animator.SetFloat("WalkSpeed", 1f);
+            anim = npc.GetComponent<Animator>();
+            anim.SetFloat("WalkSpeed", 1f);
             navAgent = npc.GetComponent<NavMeshAgent>();
             navAgent.isStopped = false;
             navAgent.destination = player.transform.position;
@@ -33,7 +33,7 @@ namespace XANFSM.zombie
             {
                 Machine.PerformTransition(Transition.Lost);
             }
-            if (Vector3.Distance(player.transform.position, npc.transform.position) < 1)
+            if (Vector3.Distance(player.transform.position, npc.transform.position) < 1.5f)
             {
                 Machine.PerformTransition(Transition.CloseToPlayer);
             }
