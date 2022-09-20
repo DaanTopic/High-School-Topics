@@ -24,7 +24,6 @@ namespace XANFSM.zombie
             anim = npc.GetComponent<Animator>();
             navAgent = npc.GetComponent<NavMeshAgent>();
             navAgent.isStopped = true;
-            anim.SetFloat("WalkSpeed", 0.5f);
 
             AiTimes += 0.01f;
             if (AiTimes > 1f)
@@ -43,6 +42,8 @@ namespace XANFSM.zombie
         {
             if (Vector3.Distance(player.transform.position, npc.transform.position) < 5)
             {
+                anim.SetBool("Patrol", false);
+                anim.SetBool("Chase", true);
                 Machine.PerformTransition(Transition.Found);
             }
         }

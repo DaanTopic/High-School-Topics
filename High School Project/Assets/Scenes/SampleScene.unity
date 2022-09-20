@@ -2614,7 +2614,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 39fbaa812c4e23b4991600796128b5bc,
         type: 3}
       propertyPath: m_Name
-      value: monster (1)
+      value: monster
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5866666021909216657, guid: 39fbaa812c4e23b4991600796128b5bc, type: 3}
@@ -3188,9 +3188,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3c0c23a0163894e85c2f0d71fd9d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
+  HP: 1
   hPBar: {fileID: 1476480230}
-  sprite: []
+  sprite:
+  - {fileID: 21300000, guid: 28baa281192c74046987a09f7908b6c5, type: 3}
+  - {fileID: 21300000, guid: 4530b315058e16a4e862ded859a0b1c2, type: 3}
+  - {fileID: 21300000, guid: 4bcbcec8c42f43f47b97f4527d5ca141, type: 3}
 --- !u!54 &1076084320
 Rigidbody:
   m_ObjectHideFlags: 0

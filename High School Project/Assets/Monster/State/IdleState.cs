@@ -11,7 +11,7 @@ namespace XANFSM.zombie
         GameObject player;
         NavMeshAgent navAgent;
         Animator anim;
-        float AiTimes = 0f;
+        float AiTimes;
 
         public IdleState(ZombieStateMachine zombieStateMachine) : base(zombieStateMachine)
         {
@@ -23,7 +23,6 @@ namespace XANFSM.zombie
         {
             navAgent = npc.GetComponent<NavMeshAgent>();
             anim = npc.GetComponent<Animator>();
-            anim.SetFloat("WalkSpeed", 0f);
             navAgent.isStopped = true;
 
             UpdateTimes();
@@ -33,16 +32,21 @@ namespace XANFSM.zombie
         {
             if (Vector3.Distance(player.transform.position, npc.transform.position) < 5)
             {
+                anim.SetBool("Idle", false);
+                anim.SetBool("Chase", true);
                 Machine.PerformTransition(Transition.Found);
             }
             if (AiTimes > 1f)
             {
+                anim.SetBool("Idle", false);
+                anim.SetBool("Patrol", true);
                 Machine.PerformTransition(Transition.Patrol);
+                AiTimes = 0f;
             }
         }
         private void UpdateTimes()
         {
-            AiTimes += 0.01f;
+            AiTimes += Time.deltaTime;
         }
     }
 }
