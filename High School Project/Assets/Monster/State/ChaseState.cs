@@ -21,20 +21,24 @@ namespace XANFSM.zombie
         public override void Act(GameObject npc)
         {
             anim = npc.GetComponent<Animator>();
-            anim.SetFloat("WalkSpeed", 1f);
+
             navAgent = npc.GetComponent<NavMeshAgent>();
             navAgent.isStopped = false;
-            navAgent.destination = player.transform.position;
+            navAgent.SetDestination(player.transform.position);
         }
 
         public override void Reason(GameObject npc)
         {
             if (Vector3.Distance(player.transform.position, npc.transform.position) > 15)
             {
+                anim.SetBool("Chase", false);
+                anim.SetBool("Idle", true);
                 Machine.PerformTransition(Transition.Lost);
             }
             if (Vector3.Distance(player.transform.position, npc.transform.position) < 1.5f)
             {
+                anim.SetBool("Chase", false);
+                anim.SetBool("Attack", true);
                 Machine.PerformTransition(Transition.CloseToPlayer);
             }
         }

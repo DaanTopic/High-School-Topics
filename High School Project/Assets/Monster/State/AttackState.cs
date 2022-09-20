@@ -9,6 +9,7 @@ namespace XANFSM.zombie
     public class AttackState : ZombieState
     {
         GameObject player;
+        NavMeshAgent navAgent;
         Animator anim;
         AnimatorStateInfo animInfo;
 
@@ -20,25 +21,31 @@ namespace XANFSM.zombie
 
         public override void Act(GameObject npc)
         {
+            navAgent = npc.GetComponent<NavMeshAgent>();
+            navAgent.SetDestination(player.transform.position);
+
             anim = npc.GetComponent<Animator>();
             animInfo = anim.GetCurrentAnimatorStateInfo(0);
-            anim.SetBool("Attack", true);
         }
 
         public override void Reason(GameObject npc)
         {
-            if ((animInfo.normalizedTime > 0.8f) && (animInfo.IsName("Attack")))
+            if ((animInfo.normalizedTime >= 1.0f) && (animInfo.IsName("Attack")))
             {
-                anim.SetBool("Attack", false);
+                player.GetComponent<Health>().TakeDamage(0.1f);
                 if (Vector3.Distance(player.transform.position, npc.transform.position) < 5)
                 {
+                    anim.SetBool("Attack", false);
+                    anim.SetBool("Chase", true);
                     Machine.PerformTransition(Transition.Found);
                 }
-                if (Vector3.Distance(player.transform.position, npc.transform.position) > 15)
+                if (Vector3.Distance(player.transform.position, npc.transform.position) >= 5)
                 {
+                    anim.SetBool("Attack", false);
+                    anim.SetBool("Idle", true);
                     Machine.PerformTransition(Transition.Lost);
                 }
             }
         }
-    }
+    } 
 }
