@@ -32,7 +32,6 @@ namespace XANFSM.zombie
         {
             if ((animInfo.normalizedTime >= 1.0f) && (animInfo.IsName("Attack")))
             {
-                player.GetComponent<Health>().TakeDamage(0.1f);
                 if (Vector3.Distance(player.transform.position, npc.transform.position) < 5)
                 {
                     anim.SetBool("Attack", false);
