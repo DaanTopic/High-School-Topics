@@ -19,8 +19,7 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
-      human bone 'Head' not found\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -196,30 +195,6 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone.008
-      humanName: RightLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone.034
-      humanName: LeftHand
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone.028
-      humanName: RightHand
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     - boneName: Bone.002
       humanName: UpperChest
       limit:
@@ -228,7 +203,7 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone.031
+    - boneName: Bone.030
       humanName: Head
       limit:
         min: {x: 0, y: 0, z: 0}
@@ -236,8 +211,24 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone.030
-      humanName: Neck
+    - boneName: Bone.008
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone.040
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone.021
+      humanName: RightHand
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -293,7 +284,7 @@ ModelImporter:
     - name: Bone.034
       parentName: Bone.005
       position: {x: -0.0000000012647433, y: 0.0029685968, z: 5.5879353e-11}
-      rotation: {x: -0.14609465, y: -0.7751734, z: 0.58682317, w: 0.18275984}
+      rotation: {x: -0.7860668, y: -0.06475757, z: -0.021386897, w: 0.6143681}
       scale: {x: 0.99999994, y: 1, z: 0.99999994}
     - name: Bone.035
       parentName: Bone.034
@@ -403,7 +394,7 @@ ModelImporter:
     - name: Bone.008
       parentName: Bone.007
       position: {x: -3.389141e-10, y: 0.003400765, z: -5.296442e-11}
-      rotation: {x: -0.041849565, y: 0.0000017965208, z: 0.019183131, w: 0.9989398}
+      rotation: {x: -0.04980384, y: -0.00030888768, z: 0.019971604, w: 0.9985593}
       scale: {x: 1.0000001, y: 0.9999999, z: 0.99999994}
     - name: Bone.017
       parentName: Bone.008
@@ -438,7 +429,7 @@ ModelImporter:
     - name: Bone.020
       parentName: Bone.019
       position: {x: -0.00000000195374, y: 0.00022396946, z: 1.3038516e-10}
-      rotation: {x: 0.01332127, y: 0.0007650559, z: 0.058564138, w: 0.99819446}
+      rotation: {x: 0.013086497, y: -0.007885414, z: 0.05742948, w: 0.99823266}
       scale: {x: 0.99999994, y: 1.0000001, z: 1}
     - name: Bone.020_end
       parentName: Bone.020
@@ -453,7 +444,7 @@ ModelImporter:
     - name: Bone.022
       parentName: Bone.021
       position: {x: 8.0748574e-10, y: 0.0009322689, z: -2.561137e-11}
-      rotation: {x: -0.040857375, y: -0.004735141, z: 0.03814675, w: 0.9984253}
+      rotation: {x: -0.041094292, y: -0.0017321588, z: 0.111118376, w: 0.9929557}
       scale: {x: 0.9999999, y: 1, z: 1}
     - name: Bone.023
       parentName: Bone.022
