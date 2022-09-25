@@ -130,8 +130,6 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             num = 100;
             UqdateAmmoInfo(num);
-
-
         }
         if (Input.GetMouseButton(0))
         {
@@ -160,7 +158,6 @@ public class ThirdPersonShooterController : MonoBehaviour
                 num--;
                 Quaternion quaternion = aimVirtualCamera.m_LookAt.transform.rotation;
                 Vector3 vector3 = aimVirtualCamera.m_LookAt.transform.position;
-                //vector3.y += 0.05f;
                 
                 vector3.y += 0.03f;
                 countrecoil += 0.03f;
