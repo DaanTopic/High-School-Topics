@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Custom_GrassComputeHLSL
-  m_Shader: {fileID: 4800000, guid: 5fb668cd46f782448928933aa1e662da, type: 3}
+  m_Shader: {fileID: 4800000, guid: c0307fa10ddc91a4cb009017933df669, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -24,6 +24,6 @@ Material:
     m_Floats:
     - _AmbientAdjustment: 0
     - _BlendFloor: 0
-    - _Fade: 0.11
+    - _Fade: -0.01
     m_Colors: []
   m_BuildTextureStacks: []

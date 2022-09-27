@@ -77,7 +77,7 @@ public class GrassPainter : MonoBehaviour
         // Add (or re-add) the delegate.
         SceneView.duringSceneGui += this.OnScene;
     }
-
+ 
     public void HandleUndo()
     {
         if (mesh)
@@ -98,7 +98,7 @@ public class GrassPainter : MonoBehaviour
         }
         SceneView.RepaintAll();
     }
-
+ 
     void OnDestroy()
     {
         // When the window is destroyed, remove the delegate
@@ -106,7 +106,7 @@ public class GrassPainter : MonoBehaviour
         SceneView.duringSceneGui -= this.OnScene;
         Undo.undoRedoPerformed -= this.HandleUndo;
     }
-
+ 
     private void OnEnable()
     {
         if (filter == null)
@@ -115,10 +115,10 @@ public class GrassPainter : MonoBehaviour
         }
         SceneView.duringSceneGui += this.OnScene;
         Undo.undoRedoPerformed += this.HandleUndo;
-
+ 
         SetupMesh();
     }
-
+ 
     void SetupMesh()
     {
         mesh.GetVertices(positions);
@@ -129,7 +129,7 @@ public class GrassPainter : MonoBehaviour
         mesh.GetColors(colors);
         mesh.GetNormals(normals);
     }
-
+ 
     public void ClearMesh()
     {
         Undo.RegisterCompleteObjectUndo(mesh, "Cleared Grass");
@@ -141,7 +141,7 @@ public class GrassPainter : MonoBehaviour
         length = new List<Vector2>();
         RebuildMesh();
     }
-
+ 
     public void FloodColor()
     {
         Undo.RegisterCompleteObjectUndo(mesh, "Flooded Color");
@@ -151,7 +151,7 @@ public class GrassPainter : MonoBehaviour
         }
         RebuildMesh();
     }
-
+ 
     public void FloodLengthAndWidth()
     {
         Undo.RegisterCompleteObjectUndo(mesh, "Flooded Length/Width");
@@ -161,7 +161,7 @@ public class GrassPainter : MonoBehaviour
         }
         RebuildMesh();
     }
-
+ 
     void OnScene(SceneView scene)
     {
         if (this != null)
@@ -176,11 +176,11 @@ public class GrassPainter : MonoBehaviour
                 mousePos.y = scene.camera.pixelHeight - mousePos.y * ppp;
                 mousePos.x *= ppp;
                 mousePos.z = 0;
-
+ 
                 // ray for gizmo(disc)
                 Ray rayGizmo = scene.camera.ScreenPointToRay(mousePos);
                 RaycastHit hitGizmo;
-
+ 
                 if (Physics.Raycast(rayGizmo, out hitGizmo, 200f, hitMask.value))
                 {
                     hitPosGizmo = hitGizmo.point;
@@ -212,13 +212,13 @@ public class GrassPainter : MonoBehaviour
                         // place based on density
                         for (int k = 0; k < density * brushSize; k++)
                         {
-
+ 
                             // brushrange
                             float t = 2f * Mathf.PI * Random.Range(0f, brushSize);
                             float u = Random.Range(0f, brushSize) + Random.Range(0f, brushSize);
                             float r = (u > 1 ? 2 - u : u);
                             Vector3 origin = Vector3.zero;
-
+ 
                             // place random in radius, except for first one
                             if (k != 0)
                             {
@@ -229,11 +229,11 @@ public class GrassPainter : MonoBehaviour
                             {
                                 origin = Vector3.zero;
                             }
-
+ 
                             // add random range to ray
                             Ray ray = scene.camera.ScreenPointToRay(mousePos);
                             ray.origin += origin;
-
+ 
                             // if the ray hits something thats on the layer mask,  within the grass limit and within the y normal limit
                             if (Physics.Raycast(ray, out terrainHit, 200f, hitMask.value) && i < grassLimit && terrainHit.normal.y <= (1 + normalLimit) && terrainHit.normal.y >= (1 - normalLimit))
                             {
@@ -245,13 +245,13 @@ public class GrassPainter : MonoBehaviour
                                     {
                                         var grassPosition = hitPos;// + Vector3.Cross(origin, hitNormal);
                                         grassPosition -= this.transform.position;
-
+ 
                                         positions.Add((grassPosition));
                                         indicies.Add(i);
                                         length.Add(new Vector2(sizeWidth, sizeLength));
                                         // add random color variations                          
                                         colors.Add(new Color(AdjustedColor.r + (Random.Range(0, 1.0f) * rangeR), AdjustedColor.g + (Random.Range(0, 1.0f) * rangeG), AdjustedColor.b + (Random.Range(0, 1.0f) * rangeB), 1));
-
+ 
                                         //colors.Add(temp);
                                         normals.Add(terrainHit.normal);
                                         i++;
@@ -268,7 +268,7 @@ public class GrassPainter : MonoBehaviour
                                             colors.Add(new Color(AdjustedColor.r + (Random.Range(0, 1.0f) * rangeR), AdjustedColor.g + (Random.Range(0, 1.0f) * rangeG), AdjustedColor.b + (Random.Range(0, 1.0f) * rangeB), 1));
                                             normals.Add(terrainHit.normal);
                                             i++;
-
+ 
                                             if (origin == Vector3.zero)
                                             {
                                                 lastPosition = hitPos;
@@ -294,7 +294,7 @@ public class GrassPainter : MonoBehaviour
                                 Vector3 pos = positions[j];
                                 pos += this.transform.position;
                                 float dist = Vector3.Distance(terrainHit.point, pos);
-
+ 
                                 // if its within the radius of the brush, remove all info
                                 if (dist <= brushSize)
                                 {
@@ -304,7 +304,7 @@ public class GrassPainter : MonoBehaviour
                                     length.RemoveAt(j);
                                     indicies.RemoveAt(j);
                                     i--;
-
+ 
                                 }
                             }
                             for (int ii = 0; ii < indicies.Count; ii++)
@@ -318,7 +318,7 @@ public class GrassPainter : MonoBehaviour
                     if (toolbarInt == 2)
                     {
                         Ray ray = scene.camera.ScreenPointToRay(mousePos);
-
+ 
                         if (Physics.Raycast(ray, out terrainHit, 200f, hitMask.value))
                         {
                             hitPos = terrainHit.point;
@@ -327,25 +327,25 @@ public class GrassPainter : MonoBehaviour
                             for (int j = 0; j < positions.Count; j++)
                             {
                                 Vector3 pos = positions[j];
-
+ 
                                 pos += this.transform.position;
                                 float dist = Vector3.Distance(terrainHit.point, pos);
-
+ 
                                 // if its within the radius of the brush, remove all info
                                 if (dist <= brushSize)
                                 {
-
+ 
                                     float falloff = Mathf.Clamp01((dist / (brushFalloffSize * brushSize)));
-
+ 
                                     //store the original color
                                     Color OrigColor = colors[j];
-
+ 
                                     // add in the new color
                                     Color newCol = (new Color(AdjustedColor.r + (Random.Range(0, 1.0f) * rangeR), AdjustedColor.g + (Random.Range(0, 1.0f) * rangeG), AdjustedColor.b + (Random.Range(0, 1.0f) * rangeB), 1));
-
+ 
                                     Vector2 origLength = length[j];
                                     Vector2 newLength = new Vector2(sizeWidth, sizeLength); ;
-
+ 
                                     flowTimer++;
                                     if (flowTimer > Flow)
                                     {
@@ -366,24 +366,24 @@ public class GrassPainter : MonoBehaviour
                         }
                         e.Use();
                     }
-
+ 
                     // Reproject mesh points
                     if (toolbarInt == 3)
                     {
                         Ray ray = scene.camera.ScreenPointToRay(mousePos);
-
+ 
                         if (Physics.Raycast(ray, out terrainHit, 200f, hitMask.value))
                         {
                             hitPos = terrainHit.point;
                             hitPosGizmo = hitPos;
                             hitNormal = terrainHit.normal;
-
+ 
                             for (int j = 0; j < positions.Count; j++)
                             {
                                 Vector3 pos = positions[j];
                                 pos += this.transform.position;
                                 float dist = Vector3.Distance(terrainHit.point, pos);
-
+ 
                                 // if its within the radius of the brush, raycast to a new position
                                 if (dist <= brushSize)
                                 {
@@ -404,7 +404,7 @@ public class GrassPainter : MonoBehaviour
             }
         }
     }
-
+ 
     void RebuildMesh()
     {
         if (mesh == null)
