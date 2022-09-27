@@ -10,6 +10,7 @@ namespace XANFSM {
 		private ZombieState mCurrentFSMState;
 		public void DoUpdate(GameObject npc)
 		{
+			if (npc.GetComponent<ZombieHealth>() == null) npc.AddComponent<ZombieHealth>();
 			mCurrentFSMState.Act(npc);
 			mCurrentFSMState.Reason(npc);
 		}
