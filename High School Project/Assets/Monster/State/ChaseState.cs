@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace XANFSM.Test
+namespace XANFSM.zombie
 {
 
     public class ChaseState : ZombieState
     {
         GameObject player;
         NavMeshAgent navAgent;
-        float maxspeed = 3f;
+        Animator anim;
+
         public ChaseState(ZombieStateMachine zombieStateMachine) : base(zombieStateMachine)
         {
             mStateID = ZombieStateID.Chase;
@@ -19,16 +20,26 @@ namespace XANFSM.Test
 
         public override void Act(GameObject npc)
         {
+            anim = npc.GetComponent<Animator>();
+
             navAgent = npc.GetComponent<NavMeshAgent>();
-            navAgent.speed = maxspeed * 5 * Time.deltaTime;
-            navAgent.destination = player.transform.position;
+            navAgent.isStopped = false;
+            navAgent.SetDestination(player.transform.position);
         }
 
         public override void Reason(GameObject npc)
         {
-            if (Vector3.Distance(player.transform.position, npc.transform.position) > 6)
+            if (Vector3.Distance(player.transform.position, npc.transform.position) > 15)
             {
-                mZombieStateMachine.PerformTransition(Transition.Lost);
+                anim.SetBool("Chase", false);
+                anim.SetBool("Idle", true);
+                Machine.PerformTransition(Transition.Lost);
+            }
+            if (Vector3.Distance(player.transform.position, npc.transform.position) < 1.5f)
+            {
+                anim.SetBool("Chase", false);
+                anim.SetBool("Attack", true);
+                Machine.PerformTransition(Transition.CloseToPlayer);
             }
         }
     }

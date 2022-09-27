@@ -15,10 +15,9 @@ public class BuildingManager : MonoBehaviour
     private Vector3 pos;
     private RaycastHit hitInfo;
     [SerializeField] private LayerMask mask;
-    public float rotateAmount;
+    private float rotateAmount = 45.0f;
     public bool canPlace = true;
     public GameObject buildUI;
-
 
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
     [SerializeField] private GameObject PlayPosition;
