@@ -403,5 +403,9 @@ namespace StarterAssets
         {
             _rotateOnMove = newRotateOnMove;
         }
+        private void OnAnimatorIK(int layerIndex)
+        {
+            _animator.SetIKPosition(AvatarIKGoal.RightFoot, new Vector3(0, 0, 0));
+        }
     }
 }
