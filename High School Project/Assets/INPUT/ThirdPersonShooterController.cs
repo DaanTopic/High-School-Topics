@@ -24,7 +24,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     private ThirdPersonController thirdPersonController;
     private StarterAssetsInputs _input;
     private Animator animator;
-
+    public AudioClip LandingAudioClip;
+    [Range(0, 5)] public float GunAudioVolume = 0.5f;
 
     private void Awake()
     {
@@ -165,14 +166,15 @@ public class ThirdPersonShooterController : MonoBehaviour
                 vector3.y += 0.03f;
                 countrecoil += 0.03f;
                 aimVirtualCamera.m_LookAt.SetPositionAndRotation(vector3 , quaternion);
-               
-  
+
+                
 
                 Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
                 Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
                 _input.shoot = false;
                 ShakeCamera(1f, .1f);
 
+                AudioSource.PlayClipAtPoint(LandingAudioClip,spawnBulletPosition.transform.position, GunAudioVolume);
             }
             if (num <= 0)
             {
