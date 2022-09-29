@@ -21,15 +21,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Ground
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: 4800000, guid: 17f2f62d8808f924b8841c6613757ead, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -108,12 +107,14 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 1
     - _Mode: 0
+    - _NormalIntensity: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
+    - _SpecIntensity: 0.2
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
@@ -123,6 +124,8 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.29316604, g: 0.42647055, b: 0.21637106, a: 1}
     - _Color: {r: 0.293166, g: 0.42647052, b: 0.21637103, a: 1}
+    - _Diffusecolor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Speccolor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
