@@ -16,11 +16,11 @@ public class ZombieHealth : MonoBehaviour
         if(collision.gameObject.name == "pfBulletProjectile(Clone)")
         {
             hp -= 0.1f;
-            Debug.Log(hp);
         }
         if(hp <= 0)
         {
             hp = 0f;
+            gameObject.tag = "Untagged";
             Destroy(gameObject);
         }
     }
