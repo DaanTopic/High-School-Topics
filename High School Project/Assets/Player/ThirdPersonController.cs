@@ -31,7 +31,7 @@ namespace StarterAssets
 
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
-        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
+        [Range(0, 10)] public float FootstepAudioVolume = 0.5f;
 
         [Space(10)]
         [Tooltip("The height the player can jump")]
