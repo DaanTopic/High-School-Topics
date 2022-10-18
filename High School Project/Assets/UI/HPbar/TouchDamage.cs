@@ -9,7 +9,7 @@ public class Damage : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Health>().TakeDamage(0.1f);
+            other.gameObject.GetComponent<Health>().TakeDamage(0.1f, 0.0f);
         }
     }
 }
