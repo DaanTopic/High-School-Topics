@@ -9,10 +9,10 @@ public class Health : MonoBehaviour
     public Image hPBar;
     public Sprite[] sprite;
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount , float addhealth)
     {
         HP -= amount;
-
+        HP += addhealth;
         if (HP <= 0.5f)
         {
             if (HP <= 0.25f) hPBar.sprite = sprite[2];
