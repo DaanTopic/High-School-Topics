@@ -9,7 +9,6 @@ namespace XANFSM.zombie
 	public class NPC : MonoBehaviour
 	{
 		private ZombieStateMachine fsm;
-		private GameObject obj;
 
 		void Start()
 		{
@@ -27,7 +26,6 @@ namespace XANFSM.zombie
 
         void InitFSM() {
 			fsm = new ZombieStateMachine();
-			obj = this.gameObject;
 
 			ChaseState chaseState = new ChaseState(fsm);
 			chaseState.AddTransition(Transition.CloseToPlayer, ZombieStateID.Attack);
@@ -37,7 +35,7 @@ namespace XANFSM.zombie
 			idleState.AddTransition(Transition.Found, ZombieStateID.Chase);
 			idleState.AddTransition(Transition.Patrol, ZombieStateID.Patrol);
 
-			PatrolState patrolState = new PatrolState(obj, fsm);
+			PatrolState patrolState = new PatrolState(fsm);
 			patrolState.AddTransition(Transition.Found, ZombieStateID.Chase);
 
 			AttackState attackState = new AttackState(fsm);
