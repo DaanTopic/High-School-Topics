@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
 public class Mover : MonoBehaviour
 {
     [Tooltip("max speed")]
@@ -12,8 +13,8 @@ public class Mover : MonoBehaviour
     }
 //移動到目標
     public void MoveTo(Vector3 destination, float speed){
-        navmeshagent.isStopped=false;
-        navmeshagent.speed = maxSpeed * Mathf.Clamp01(speed);
+        navmeshagent.isStopped = false;
+        navmeshagent.speed = speed * Mathf.Clamp01(speed);
         navmeshagent.destination = destination;
     }
 //停止移動
