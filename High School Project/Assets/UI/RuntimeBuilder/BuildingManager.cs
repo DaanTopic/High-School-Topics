@@ -16,6 +16,7 @@ public class BuildingManager : MonoBehaviour
     private RaycastHit hitInfo;
     [SerializeField] private LayerMask mask;
     private float rotateAmount = 45.0f;
+    private int index;
     public bool canPlace = true;
     public GameObject buildUI;
 
@@ -45,6 +46,7 @@ public class BuildingManager : MonoBehaviour
         }
         if (pendingObjects != null)
         {
+            pendingObjects.GetComponent<Collider>().isTrigger = true;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             pendingObjects.transform.position = FromWorldPositionToCubePosition(hitInfo.point - ray.direction * 0.001f);
 
@@ -56,15 +58,15 @@ public class BuildingManager : MonoBehaviour
             {
                 RotateObject();
             }
-           // UpdateMaterials();
         }
         UpdateMaterials();
     }
 
     public void PlaceObject()
     {
-        pendingObjects.GetComponent<MeshRenderer>().material = materials[2];
+        pendingObjects.GetComponent<MeshRenderer>().material = materials[index + 2];
         pendingObjects.GetComponent<Collider>().isTrigger = false;
+        pendingObjects.AddComponent<NavMeshSourceTag>();
         objUi[1].SetActive(false);
         pendingObjects = null;
     }
@@ -133,8 +135,9 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    public void SelectObject(int index)
+    public void SelectObject(int value)
     {
+        index = value;
         reset();
         objUi[1].SetActive(true);
         pendingObjects = Instantiate(gameObjects[index], pos, transform.rotation);
@@ -145,7 +148,6 @@ public class BuildingManager : MonoBehaviour
         reset();
         objUi[0].SetActive(false);
         objUi[1].SetActive(false);
-        
     }
 
 }
