@@ -270,10 +270,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1971359677140324508}
   - component: {fileID: 2173202038155857798}
-  - component: {fileID: -2580282171208676239}
   - component: {fileID: -9051905745952355784}
   - component: {fileID: 6837603864012487393}
   - component: {fileID: 166338225453495367}
+  - component: {fileID: 1522862443695795087}
+  - component: {fileID: 6559744944450429827}
   m_Layer: 0
   m_Name: sentryGun
   m_TagString: Untagged
@@ -306,7 +307,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971359677140552892}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 818381019e4b19b4ea6f82a8f6edbefe, type: 3}
   m_Name: 
@@ -317,20 +318,6 @@ MonoBehaviour:
   pfBulletProjectile: {fileID: 6863857337172796870, guid: 9fc5deab5fef94d41b92a7112049f302,
     type: 3}
   spawnBulletPosition: {fileID: 6807844210570835211}
---- !u!64 &-2580282171208676239
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1971359677140552892}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!114 &-9051905745952355784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +384,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1522862443695795087
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971359677140552892}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6147003, y: 1.4166694, z: 1.4810753}
+  m_Center: {x: -0.017116547, y: -0.8222563, z: 0.19670296}
+--- !u!64 &6559744944450429827
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971359677140552892}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &1971359677140552894
 GameObject:
   m_ObjectHideFlags: 0

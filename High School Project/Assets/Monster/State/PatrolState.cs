@@ -11,31 +11,32 @@ namespace XANFSM.zombie
         GameObject player;
         NavMeshAgent navAgent;
         Animator anim;
-        float PatrolRange = 5f, AiTimes = 0f;
+        float PatrolRange = 5f, PatrolError = 1f, AIx, AIz;
+        Vector3 home, setAI, ran;
+        Mover mover;
 
-        public PatrolState(ZombieStateMachine zombieStateMachine) : base(zombieStateMachine)
+
+        public PatrolState(GameObject npc, ZombieStateMachine zombieStateMachine) : base(zombieStateMachine)
         {
             mStateID = ZombieStateID.Patrol;
             player = GameObject.FindWithTag("Player");
+            setAI = npc.transform.position;
+            home = npc.transform.position;
         }
 
         public override void Act(GameObject npc)
         {
             anim = npc.GetComponent<Animator>();
             navAgent = npc.GetComponent<NavMeshAgent>();
-            navAgent.isStopped = true;
-
-            AiTimes += 0.01f;
-            if (AiTimes > 1f)
+            mover = npc.GetComponent<Mover>();
+            if (Vector3.Distance(npc.transform.position, home) <= PatrolError)
             {
-                float AIx = Random.Range(-PatrolRange, PatrolRange);
-                float AIz = Random.Range(-PatrolRange, PatrolRange);
-                Vector3 ran = new Vector3(AIx, 0, AIz);
-                Quaternion rotation = Quaternion.LookRotation(ran - npc.transform.position);
-                npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, rotation, Time.deltaTime * 10);
-                npc.transform.Translate(Vector3.forward * Time.deltaTime * 3);
-                AiTimes = 0f;
+                AIx = Random.Range(-PatrolRange, PatrolRange);
+                AIz = Random.Range(-PatrolRange, PatrolRange);
+                ran = new Vector3(AIx, 0, AIz);
+                home = setAI + ran;
             }
+            mover.MoveTo(home, 1f);
         }
 
         public override void Reason(GameObject npc)
