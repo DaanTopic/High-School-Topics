@@ -15,6 +15,7 @@ public class BuildingManager : MonoBehaviour
     private Vector3 pos;
     private RaycastHit hitInfo;
     [SerializeField] private LayerMask mask;
+    private int index;
     private float rotateAmount = 45.0f;
     public bool canPlace = true;
     public GameObject buildUI;
@@ -46,7 +47,12 @@ public class BuildingManager : MonoBehaviour
         if (pendingObjects != null)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            pendingObjects.transform.position = FromWorldPositionToCubePosition(hitInfo.point - ray.direction * 0.001f);
+
+            if (pendingObjects.name == "sentryGun(Clone)")
+            {
+                pendingObjects.transform.position = new Vector3(0f, 1.282f, 0f) + FromWorldPositionToCubePosition(hitInfo.point - ray.direction * 0.001f);
+            }
+            else pendingObjects.transform.position = FromWorldPositionToCubePosition(hitInfo.point - ray.direction * 0.001f);
 
             if (Input.GetMouseButtonDown(0) && canPlace)
             {
@@ -56,16 +62,19 @@ public class BuildingManager : MonoBehaviour
             {
                 RotateObject();
             }
-           // UpdateMaterials();
         }
         UpdateMaterials();
     }
 
     public void PlaceObject()
     {
-        pendingObjects.GetComponent<MeshRenderer>().material = materials[2];
+        pendingObjects.GetComponent<MeshRenderer>().material = materials[index + 2];
         pendingObjects.GetComponent<Collider>().isTrigger = false;
         objUi[1].SetActive(false);
+        if (pendingObjects.name == "sentryGun(Clone)")
+        {
+            pendingObjects.GetComponent<sentryGun>().enabled = true;
+        }
         pendingObjects = null;
     }
     public void RotateObject()
@@ -124,20 +133,18 @@ public class BuildingManager : MonoBehaviour
     {
         if (pendingObjects != null)
         {
-            if (canPlace)
-            {
-                pendingObjects.GetComponent<MeshRenderer>().material = materials[0];
-            }
-            else 
-                pendingObjects.GetComponent<MeshRenderer>().material = materials[1];
+            if (canPlace) pendingObjects.GetComponent<MeshRenderer>().material = materials[0];
+            else pendingObjects.GetComponent<MeshRenderer>().material = materials[1];
         }
     }
 
-    public void SelectObject(int index)
+    public void SelectObject(int value)
     {
         reset();
+        index = value;
         objUi[1].SetActive(true);
         pendingObjects = Instantiate(gameObjects[index], pos, transform.rotation);
+        pendingObjects.GetComponent<Collider>().isTrigger = true;
     }
 
     public void Cancel()
@@ -145,7 +152,6 @@ public class BuildingManager : MonoBehaviour
         reset();
         objUi[0].SetActive(false);
         objUi[1].SetActive(false);
-        
     }
 
 }
