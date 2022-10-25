@@ -4,17 +4,21 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Mover : MonoBehaviour
 {
-    NavMeshAgent navAgent;
+    [Tooltip("max speed")]
+    [SerializeField] float maxSpeed = 6f;
+    NavMeshAgent navmeshagent;
     private void Awake() {
-        navAgent = GetComponent<NavMeshAgent>();
+        navmeshagent = GetComponent<NavMeshAgent>();
     }
+//移動到目標
     public void MoveTo(Vector3 destination, float speed){
-        navAgent.isStopped=false;
-        navAgent.speed = 1f * Mathf.Clamp01(speed);
-        navAgent.destination = destination;
+        navmeshagent.isStopped=false;
+        navmeshagent.speed = maxSpeed * Mathf.Clamp01(speed);
+        navmeshagent.destination = destination;
+    }
+//停止移動
+    public void CancelMove(){
+        navmeshagent.isStopped=true;
     }
 
-    //public void CancelMove(){
-    //    navAgent.isStopped=true;
-    //}
 }

@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 5285174987729393547, guid: 788f99c0acce4384a91a6c213fb34068,
         type: 3}
       propertyPath: m_Name
-      value: car_6_black (1) Variant
+      value: car_6_black (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 788f99c0acce4384a91a6c213fb34068, type: 3}

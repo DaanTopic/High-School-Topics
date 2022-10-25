@@ -6,7 +6,7 @@ using UnityEngine.AI;
 namespace XANFSM.zombie
 {
 
-	public class Zombie : MonoBehaviour
+	public class NPC : MonoBehaviour
 	{
 		private ZombieStateMachine fsm;
 
@@ -35,7 +35,7 @@ namespace XANFSM.zombie
 			idleState.AddTransition(Transition.Found, ZombieStateID.Chase);
 			idleState.AddTransition(Transition.Patrol, ZombieStateID.Patrol);
 
-			PatrolState patrolState = new PatrolState(this.gameObject, fsm);
+			PatrolState patrolState = new PatrolState(fsm);
 			patrolState.AddTransition(Transition.Found, ZombieStateID.Chase);
 
 			AttackState attackState = new AttackState(fsm);

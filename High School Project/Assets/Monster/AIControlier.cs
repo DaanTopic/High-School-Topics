@@ -54,7 +54,7 @@ public class AIControlier : MonoBehaviour
         if(!find){
             if (AiTimes<Times){
                 Debug.Log("我好困惑");
-                //mover.CancelMove();
+                mover.CancelMove();
                 animator.SetBool("Turn",true);
                 Debug.Log(AiTimes);
             }
