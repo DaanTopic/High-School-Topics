@@ -9,7 +9,7 @@ public class Mover : MonoBehaviour
         navAgent = GetComponent<NavMeshAgent>();
     }
     public void MoveTo(Vector3 destination, float speed){
-        navAgent.isStopped=false;
+        navAgent.isStopped = false;
         navAgent.speed = 1f * Mathf.Clamp01(speed);
         navAgent.destination = destination;
     }

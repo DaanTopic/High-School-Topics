@@ -274,7 +274,6 @@ GameObject:
   - component: {fileID: 6837603864012487393}
   - component: {fileID: 166338225453495367}
   - component: {fileID: 1522862443695795087}
-  - component: {fileID: 6559744944450429827}
   m_Layer: 0
   m_Name: sentryGun
   m_TagString: Untagged
@@ -397,20 +396,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6147003, y: 1.4166694, z: 1.4810753}
   m_Center: {x: -0.017116547, y: -0.8222563, z: 0.19670296}
---- !u!64 &6559744944450429827
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1971359677140552892}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &1971359677140552894
 GameObject:
   m_ObjectHideFlags: 0

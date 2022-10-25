@@ -30,6 +30,7 @@ public class sentryGun : MonoBehaviour
         
         var targetPoint = target.position;
         var targetRotation = Quaternion.LookRotation(targetPoint - transform.position, Vector3.up);
+        targetPoint = new Vector3(0, 15f, 0) + targetPoint;
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
 
         Vector3 aimDir = (transform.position - target.position).normalized;
