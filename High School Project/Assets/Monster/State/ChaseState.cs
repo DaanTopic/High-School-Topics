@@ -23,6 +23,7 @@ namespace XANFSM.zombie
             anim = npc.GetComponent<Animator>();
 
             navAgent = npc.GetComponent<NavMeshAgent>();
+            navAgent.speed = 3.5f;
             navAgent.isStopped = false;
             navAgent.SetDestination(player.transform.position);
         }
