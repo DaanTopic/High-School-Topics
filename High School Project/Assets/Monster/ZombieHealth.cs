@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class ZombieHealth : MonoBehaviour
 {
-
+    private gamerules gamerules;
     private float hp;
     float timer = 0;
     float duration = 0f;
 
     void Start()
     {
+        gamerules = GameObject.Find("Gamemanger").GetComponent<gamerules>();
         hp = 1.0f;
     }
 
@@ -42,6 +43,7 @@ public class ZombieHealth : MonoBehaviour
         {
             hp = 0f;
             gameObject.tag = "Untagged";
+            gamerules.killamount += 1;
             Destroy(gameObject);
         }
     }

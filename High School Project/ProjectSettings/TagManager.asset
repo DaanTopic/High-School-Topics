@@ -8,6 +8,7 @@ TagManager:
   - Zombie
   - BarbedWire
   - Healthregenerate
+  - LittleGirl
   layers:
   - Default
   - TransparentFX

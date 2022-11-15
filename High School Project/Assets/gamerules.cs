@@ -5,14 +5,14 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 
-public class gamerules : MonoBehaviour
+public class Gamerules : MonoBehaviour
 {
     double GameCollapseTime;
-    [SerializeField] public TextMeshProUGUI TimeCount;
+    [SerializeField] public TextMeshProUGUI AmmoCountTextLabel;
     // Start is called before the first frame update
     void Start()
     {
-        TimeCount.text = GameCollapseTime.ToString();
+        AmmoCountTextLabel.text = GameCollapseTime.ToString();
     }
 
     // Update is called once per frame
@@ -20,6 +20,6 @@ public class gamerules : MonoBehaviour
     {
         GameCollapseTime = Time.time;
         GameCollapseTime = Math.Round(GameCollapseTime, 2, MidpointRounding.AwayFromZero);
-        TimeCount.text = GameCollapseTime.ToString();
+        AmmoCountTextLabel.text = GameCollapseTime.ToString();
     }
 }
