@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class ShootAction : MonoBehaviour
 {
+    GameObject player;
     Animator animator;
     // Start is called before the first frame update
-        private void Awake() {
-        animator=GetComponent<Animator>();
+    private void Awake() {
+        animator = GetComponent<Animator>();
     }
     void Start()
     {
-        
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
