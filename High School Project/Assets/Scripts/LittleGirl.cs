@@ -34,11 +34,11 @@ public class LittleGirl : MonoBehaviour
                 
                 if(i == 0)
                 {
-                    Dialogue.text = ("Hi，看來你的車子拋錨了");
+                    Dialogue.text = ("Hi,看來你的車子拋錨了");
                 }
                 if (i == 1)
                 {
-                    Dialogue.text = ("如你所見，這裡遭受了疆屍攻擊");
+                    Dialogue.text = ("如你所見,這裡遭受了疆屍攻擊");
                 }
                 if (i == 2)
                 {
@@ -46,11 +46,11 @@ public class LittleGirl : MonoBehaviour
                 }
                 if (i == 3)
                 {
-                    Dialogue.text = ("村長載著我們的公車拋錨了，他似乎在前方尋找出去的方法");
+                    Dialogue.text = ("村長載著我們的公車拋錨了,他似乎在前方尋找出去的方法");
                 }
                 if (i == 4)
                 {
-                    Dialogue.text = ("如果你願意的話，可以幫我清理前方的疆屍嗎?");
+                    Dialogue.text = ("如果你願意的話,可以幫我清理前方的疆屍嗎?");
                 }
                 if (i == 5)
                 {
