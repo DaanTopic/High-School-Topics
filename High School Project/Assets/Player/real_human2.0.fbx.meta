@@ -16,8 +16,7 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
-      human bone 'LeftUpperArm' not found\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -457,6 +456,22 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: Bone.002
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone.003
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     skeleton:
     - name: real_human2.0(Clone)
       parentName: 
@@ -725,7 +740,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Bone.039
       parentName: Bone.017
-      position: {x: 2.3111663e-10, y: 0.00036580118, z: 0.0003244656}
+      position: {x: 0, y: 0.00037, z: 0.00033}
       rotation: {x: 0.6829576, y: 0.2981004, z: -0.28262994, w: 0.6040078}
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: Bone.040

@@ -13,7 +13,7 @@ public class ZombieHealth : MonoBehaviour
 
     void Start()
     {
-        gamerules = GameObject.Find("Gamemanger").GetComponent<gamerules>();
+        gamerules = GameObject.Find("GameRules").GetComponent<gamerules>();
         hp = 1.0f;
     }
 
