@@ -9,6 +9,7 @@ TagManager:
   - BarbedWire
   - Healthregenerate
   - LittleGirl
+  - Boss
   layers:
   - Default
   - TransparentFX
