@@ -10,7 +10,6 @@ TagManager:
   - Healthregenerate
   - LittleGirl
   - Boss
-  - Bottle
   layers:
   - Default
   - TransparentFX

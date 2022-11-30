@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 using System.Threading;
 using UnityEngine.UI;
 using UnityEngine.InputSystem.Controls;
-using UnityEngine.Animations.Rigging;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
@@ -21,7 +20,6 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private Transform vfxHitGreen;
     [SerializeField] private Transform vfxHitRed;
     public Text AmmoCountTextLabel;
-    public Rig idleRig, aimRig;
     [SerializeField] private int num;
     private ThirdPersonController thirdPersonController;
     private StarterAssetsInputs _input;
@@ -106,8 +104,6 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         if (_input.aim)
         {
-            idleRig.weight = 0;
-            aimRig.weight = 1;
             aimVirtualCamera.gameObject.SetActive(true);
             thirdPersonController.SetSensitivity(aimSensitivity);
             thirdPersonController.SetRotateOnMove(false);
@@ -121,8 +117,6 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
         else
         {
-            idleRig.weight = 1;
-            aimRig.weight = 0;
             aimVirtualCamera.gameObject.SetActive(false);
             thirdPersonController.SetSensitivity(normalSensitivity);
             thirdPersonController.SetRotateOnMove(true);
