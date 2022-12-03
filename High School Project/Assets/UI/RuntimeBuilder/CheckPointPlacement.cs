@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CheckPointPlacement : MonoBehaviour
 {
+    private bool ck1 = false, ck2 = false;
     private BuildingManager buildingManager;
     void Start()
     {
@@ -12,11 +13,31 @@ public class CheckPointPlacement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        buildingManager.canPlace = false;
+        if(other.gameObject.tag == "Player")
+        {
+            buildingManager.canPlace = false;
+            ck1 = true;
+        }
+        else
+        {
+            buildingManager.canPlace = false;
+            ck2 = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        buildingManager.canPlace = true;
+        if (other.gameObject.tag == "Player")
+        {
+            ck1 = false;
+        }
+        else
+        {
+            ck2 = false;
+        }
+        if (!ck1 && !ck2)
+        {
+            buildingManager.canPlace = true;
+        }
     }
 }

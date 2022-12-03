@@ -26,7 +26,7 @@ public class HealthRegenerate : MonoBehaviour
             {
                 reChargeTime = currentTime;
                 // 補血
-                player.gameObject.GetComponent<Health>().TakeDamage(0.15f, 0.0f);
+                player.gameObject.GetComponent<Health>().TakeDamage(0.0f, 0.15f);
             }
         }
     }
