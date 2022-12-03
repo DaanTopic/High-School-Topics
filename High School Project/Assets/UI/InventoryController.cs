@@ -24,6 +24,9 @@ namespace Inventory
         [SerializeField]
         private AudioSource audioSource;
 
+        [SerializeField]
+        private GameObject[] objUi;
+
         // public int inventorySize = 10;
         private void Start()
         {
@@ -160,6 +163,8 @@ namespace Inventory
             {
                 if (inventoryUI.isActiveAndEnabled == false)
                 {
+                    objUi[0].SetActive(false);
+                    objUi[1].SetActive(false);
                     inventoryUI.Show();
                     Cursor.lockState = CursorLockMode.Confined;
                     foreach (var item in inventoryData.GetCurrentInventoryState())
@@ -171,6 +176,8 @@ namespace Inventory
                 }
                 else
                 {
+                    objUi[0].SetActive(true);
+                    objUi[1].SetActive(true);
                     inventoryUI.Hide();
                     Cursor.lockState = CursorLockMode.Locked;
                 }
