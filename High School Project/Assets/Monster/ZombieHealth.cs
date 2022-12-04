@@ -8,7 +8,7 @@ public class ZombieHealth : MonoBehaviour
 {
     private gamerules gamerules;
     private float hp;
-    float timer = 0;
+    float timer = 0f;
     float duration = 0f;
 
     void Start()
@@ -20,14 +20,6 @@ public class ZombieHealth : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (hp <= 0)
-        {
-            ZombiePooler zombiePooler = ZombiePooler.Instance;
-            
-            ++gamerules.killamount;
-            zombiePooler.ZombieDead("Zombie", this.gameObject);
-            GameObject.Find("ZombiePool").GetComponent<ZombieSpawner>().zombieAmount -= 1;
-        }
     }
 
     void OnCollisionStay(Collision collision)
@@ -36,8 +28,16 @@ public class ZombieHealth : MonoBehaviour
         {
             duration = 1f;
             hp -= 0.5f;
-            timer = 0;
+            timer = 0f;
             Debug.Log("Enemy touched");
+        }
+        if (hp <= 0)
+        {
+            ZombiePooler zombiePooler = ZombiePooler.Instance;
+
+            ++gamerules.killamount;
+            hp = 1.0f;
+            zombiePooler.ZombieDead("Zombie", this.gameObject);
         }
     }
 
@@ -46,6 +46,14 @@ public class ZombieHealth : MonoBehaviour
         if (collision.gameObject.name == "pfBulletProjectile(Clone)")
         {
             hp -= 0.1f;
+        }
+        if (hp <= 0)
+        {
+            ZombiePooler zombiePooler = ZombiePooler.Instance;
+
+            ++gamerules.killamount;
+            hp = 1.0f;
+            zombiePooler.ZombieDead("Zombie", this.gameObject);
         }
     }
 }

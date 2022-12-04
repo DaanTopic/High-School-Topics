@@ -15,7 +15,7 @@ public class ZombieSpawner : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(zombieAmount < Maxmum)
+        if (zombieAmount < Maxmum)
         {
             zombiePooler.SpawnFromPool("Zombie", GetPoints(), Quaternion.identity);
             zombieAmount++;

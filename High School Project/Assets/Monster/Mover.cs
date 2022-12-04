@@ -13,8 +13,4 @@ public class Mover : MonoBehaviour
         navAgent.speed = 1f * Mathf.Clamp01(speed);
         navAgent.destination = destination;
     }
-
-    //public void CancelMove(){
-    //    navAgent.isStopped=true;
-    //}
 }

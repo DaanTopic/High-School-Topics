@@ -57,6 +57,6 @@ public class ZombiePooler : MonoBehaviour
     {
         poolDictionary[tag].Enqueue(zombie);
         zombie.SetActive(false);
-        zombie.transform.SetParent(inGamePool.transform);
+        GameObject.Find("ZombiePool").GetComponent<ZombieSpawner>().zombieAmount -= 1;
     }
 }
