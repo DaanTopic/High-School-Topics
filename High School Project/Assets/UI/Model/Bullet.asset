@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e692b488f4338ae42bfa4d86556d2bda, type: 3}
-  m_Name: Wood
+  m_Name: Bullet
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 99
   <Name>k__BackingField: Wood
   <Description>k__BackingField: Use to buid the wall
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: 844916cda8bfbcd4b84d48c3cc095fd8,
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: abf51983374bce549b276abbdb32b12e,
     type: 3}
   <DefaultParametersList>k__BackingField: []
   modifiersData:

@@ -9,6 +9,6 @@ public class CharacterStatHealthModifierSO : CharacterStatModifierSO
     {
         //¥[¦å
         ThirdPersonShooterController thirdPersonShooterController = character.GetComponent<ThirdPersonShooterController>();
-        thirdPersonShooterController.AmmoCountTextLabel.text = val.ToString();
+        thirdPersonShooterController.num = 25;
     }
 }

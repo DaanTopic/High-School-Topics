@@ -22,7 +22,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private Transform vfxHitRed;
     public Text AmmoCountTextLabel;
     public Rig idleRig, aimRig;
-    [SerializeField] private int num;
+    [SerializeField] public int num;
     private ThirdPersonController thirdPersonController;
     private StarterAssetsInputs _input;
     private Animator animator;
@@ -130,14 +130,17 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
 
 
+        if (num <= 0)
+        {
+            AmmoCountTextLabel.text = "Reload";
+        }
+        else
+        {
+            UqdateAmmoInfo(num);
+        }
 
 
         //if (starterAssetsInputs.shoot){
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            num = 100;
-            UqdateAmmoInfo(num);
-        }
         if (Input.GetMouseButton(0) && _input.aim)
         {
             time++;
@@ -178,10 +181,6 @@ public class ThirdPersonShooterController : MonoBehaviour
                 ShakeCamera(1f, .1f);
 
                 AudioSource.PlayClipAtPoint(LandingAudioClip, spawnBulletPosition.transform.position, GunAudioVolume);
-            }
-            if (num <= 0)
-            {
-                AmmoCountTextLabel.text = "Reload";
             }
 
         }
