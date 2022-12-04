@@ -8,7 +8,7 @@ using TMPro;
 public class gamerules : MonoBehaviour
 {
     double GameCollapseTime;
-    int schedule = 0;
+    public int schedule = 0;
     public int killamount = 0;
     float settime;
     [SerializeField] public TextMeshProUGUI TextMission;
@@ -22,12 +22,12 @@ public class gamerules : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (settime + 3f < Time.time && schedule == 0)
+        if (settime + 1f < Time.time && schedule == 0)
         {
             TextMission.text = "按下WASD來操控人物";
             schedule = 1;
         }
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) && schedule == 1);
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) && schedule == 1)
         {
             schedule = Mission(schedule);
         }
@@ -35,14 +35,22 @@ public class gamerules : MonoBehaviour
         {
             schedule = Mission(schedule);
         }
-        if (Input.GetKeyDown(KeyCode.I) && schedule == 3)
+        if (Input.GetKey(KeyCode.I) && schedule == 3)
         {
             schedule = Mission(schedule);
         }
-        if (Input.GetKeyDown(KeyCode.B) && schedule == 4)
+        if (Input.GetKey(KeyCode.B) && schedule == 4)
         {
             schedule = Mission(schedule);
         }
+        if (killamount>=1 && schedule == 5)
+        {
+            schedule = Mission(schedule);
+        }
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)){
+            Debug.Log("wasd");
+        }
+
 
     }
 
@@ -73,6 +81,16 @@ public class gamerules : MonoBehaviour
         {
             TextMission.text = "往前尋找女孩對話";
             return 6;
+        }
+        if (number == 7)
+        {
+            TextMission.text = "";
+            return 8;
+        }
+        if (number == 8)
+        {
+            TextMission.text = "清理前方殭屍";
+            return 9;
         }
         return schedule;
     }

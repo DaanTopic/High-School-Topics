@@ -10,8 +10,11 @@ public class LittleGirl : MonoBehaviour
     float minDist = 3;
     float reChargeTime, currentTime;
     int i = 0;
+    bool chake = false;
     [SerializeField] public TextMeshProUGUI Dialogue;
+    
     // Start is called before the first frame update
+    
     void Start()
     {
         reChargeTime = Time.time;
@@ -25,8 +28,14 @@ public class LittleGirl : MonoBehaviour
         Vector3 LittleGirl = GameObject.FindWithTag("LittleGirl").transform.position;
         GameObject player = GameObject.FindWithTag("Player");
         float dist = Vector3.Distance(playerPosi, LittleGirl);
-        if (dist < minDist)
+        GameObject x = GameObject.FindWithTag("rule");
+        if (dist < minDist && x.GetComponent<gamerules>().schedule>=6){
+            chake=true;
+        }
+        if (chake)
         {
+            Debug.Log(1);
+            
             if (currentTime > reChargeTime + 3.5f)
             {
                 reChargeTime = currentTime;
@@ -34,6 +43,8 @@ public class LittleGirl : MonoBehaviour
                 
                 if(i == 0)
                 {
+                    x.GetComponent<gamerules>().Mission(7);
+                    Debug.Log(2);
                     Dialogue.text = ("Hi,看來你的車子拋錨了");
                 }
                 if (i == 1)
@@ -54,6 +65,7 @@ public class LittleGirl : MonoBehaviour
                 }
                 if (i == 5)
                 {
+                    x.GetComponent<gamerules>().Mission(8);
                     Dialogue.text = ("");
                 }
                 i++;
