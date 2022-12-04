@@ -20,6 +20,14 @@ public class ZombieHealth : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        if (hp <= 0)
+        {
+            ZombiePooler zombiePooler = ZombiePooler.Instance;
+            
+            ++gamerules.killamount;
+            zombiePooler.ZombieDead("Zombie", this.gameObject);
+            GameObject.Find("ZombiePool").GetComponent<ZombieSpawner>().zombieAmount -= 1;
+        }
     }
 
     void OnCollisionStay(Collision collision)
@@ -38,13 +46,6 @@ public class ZombieHealth : MonoBehaviour
         if (collision.gameObject.name == "pfBulletProjectile(Clone)")
         {
             hp -= 0.1f;
-        }
-        if (hp <= 0)
-        {
-            hp = 0f;
-            gameObject.tag = "Untagged";
-            gamerules.killamount += 1;
-            Destroy(gameObject);
         }
     }
 }
