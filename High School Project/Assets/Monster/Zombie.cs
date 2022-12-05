@@ -24,18 +24,16 @@ namespace XANFSM.zombie
 			GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
 
-        void InitFSM() {
+        public void InitFSM() {
 			fsm = new ZombieStateMachine();
 
 			ChaseState chaseState = new ChaseState(fsm);
 			chaseState.AddTransition(Transition.CloseToPlayer, ZombieStateID.Attack);
 			chaseState.AddTransition(Transition.Lost, ZombieStateID.Idle);
-			chaseState.AddTransition(Transition.Death,ZombieStateID.Dead);
 
 			IdleState idleState = new IdleState(fsm);
 			idleState.AddTransition(Transition.Found, ZombieStateID.Chase);
 			idleState.AddTransition(Transition.Patrol, ZombieStateID.Patrol);
-			idleState.AddTransition(Transition.Death, ZombieStateID.Dead);
 
 			PatrolState patrolState = new PatrolState(this.gameObject, fsm);
 			patrolState.AddTransition(Transition.Found, ZombieStateID.Chase);
@@ -44,16 +42,11 @@ namespace XANFSM.zombie
 			AttackState attackState = new AttackState(fsm);
 			attackState.AddTransition(Transition.Lost, ZombieStateID.Idle);
 			attackState.AddTransition(Transition.Found, ZombieStateID.Chase);
-			attackState.AddTransition(Transition.Death, ZombieStateID.Dead);
-			
-			DeadState deadState = new DeadState(fsm);
-			deadState.AddTransition(Transition.Lost, ZombieStateID.Idle);
 
 			fsm.AddState(idleState);
 			fsm.AddState(chaseState);
 			fsm.AddState(attackState);
 			fsm.AddState(patrolState);
-			fsm.AddState(deadState);
 		}
 	}	
 }

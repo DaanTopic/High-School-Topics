@@ -4,55 +4,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ZombieHealth : MonoBehaviour
+namespace XANFSM.zombie
 {
-    private gamerules gamerules;
-    public float hp = 1.0f;
-    float timer = 0f;
-    float duration = 0f;
-
-    void Start()
+    public class ZombieHealth : MonoBehaviour
     {
-        gamerules = GameObject.Find("GameRules").GetComponent<gamerules>();
-    }
+        private gamerules gamerules;
+        public float hp = 1.0f;
+        float timer = 0f;
+        float duration = 0f;
 
-    void Update()
-    {
-        timer += Time.deltaTime;
-    }
-
-    void OnCollisionStay(Collision collision)
-    {
-        if (timer >= duration && collision.gameObject.tag == "BarbedWire")
+        void Start()
         {
-            duration = 1f;
-            hp -= 0.5f;
-            timer = 0f;
-            Debug.Log("Enemy touched");
+            gamerules = GameObject.Find("GameRules").GetComponent<gamerules>();
         }
-        if (hp <= 0)
-        {
-            ZombiePooler zombiePooler = ZombiePooler.Instance;
 
-            ++gamerules.killamount;
-            hp = 1.0f;
-            zombiePooler.ZombieDead("Zombie", this.gameObject);
+        void Update()
+        {
+            timer += Time.deltaTime;
         }
-    }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "pfBulletProjectile(Clone)")
+        void OnCollisionStay(Collision collision)
         {
-            hp -= 0.1f;
+            if (timer >= duration && collision.gameObject.tag == "BarbedWire")
+            {
+                duration = 1f;
+                hp -= 0.5f;
+                timer = 0f;
+                Debug.Log("Enemy touched");
+            }
+            if (hp <= 0)
+            {
+                ZombiePooler zombiePooler = ZombiePooler.Instance;
+
+                ++gamerules.killamount;
+                hp = 1.0f;
+                zombiePooler.ZombieDead("Zombie", this.gameObject);
+            }
         }
-        if (hp <= 0)
-        {
-            ZombiePooler zombiePooler = ZombiePooler.Instance;
 
-            ++gamerules.killamount;
-            hp = 1.0f;
-            zombiePooler.ZombieDead("Zombie", this.gameObject);
+        void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.name == "pfBulletProjectile(Clone)")
+            {
+                hp -= 0.1f;
+            }
+            if (hp <= 0)
+            {
+                ZombiePooler zombiePooler = ZombiePooler.Instance;
+
+                ++gamerules.killamount;
+                hp = 1.0f;
+                zombiePooler.ZombieDead("Zombie", this.gameObject);
+            }
         }
     }
 }

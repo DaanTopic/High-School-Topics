@@ -21,16 +21,19 @@ namespace XANFSM.zombie
 
         public override void Act(GameObject npc)
         {
+            navAgent = npc.GetComponent<NavMeshAgent>();
+            navAgent.isStopped = true;
             anim = npc.GetComponent<Animator>();
+            anim.SetBool("Patrol", false);
+            anim.SetBool("Chase", false);
+            anim.SetBool("Attack", false);
+            anim.SetBool("Idle", true);
 
             UpdateTimes();
         }
 
         public override void Reason(GameObject npc)
         {
-            if(npc.GetComponent<ZombieHealth>().hp <= 0){
-                Machine.PerformTransition(Transition.Death);
-            }
             if (Vector3.Distance(player.transform.position, npc.transform.position) < 5)
             {
                 anim.SetBool("Idle", false);
