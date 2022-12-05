@@ -10,6 +10,7 @@ public class gamerules : MonoBehaviour
     double GameCollapseTime;
     public int schedule = 0;
     public int killamount = 0;
+    public bool keyget = false;
     float settime;
     [SerializeField] public TextMeshProUGUI TextMission;
     // Start is called before the first frame update

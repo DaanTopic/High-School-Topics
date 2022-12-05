@@ -105,6 +105,9 @@ namespace Inventory.Model
 
         public void RemoveItem(int itemIndex, int amount)
         {
+            ItemSO itemSO = null;
+            var tmp = inventoryItems.Where(a => a.item = itemSO).Select(x => x.quantity);
+            
             if(inventoryItems.Count > itemIndex)
             {
                 if (inventoryItems[itemIndex].IsEmpty)
