@@ -7,14 +7,13 @@ using UnityEngine.UI;
 public class ZombieHealth : MonoBehaviour
 {
     private gamerules gamerules;
-    private float hp;
+    public float hp = 1.0f;
     float timer = 0f;
     float duration = 0f;
 
     void Start()
     {
         gamerules = GameObject.Find("GameRules").GetComponent<gamerules>();
-        hp = 1.0f;
     }
 
     void Update()
