@@ -9,6 +9,7 @@ namespace XANFSM.zombie
 	public class Zombie : MonoBehaviour
 	{
 		private ZombieStateMachine fsm;
+		public GameObject weapon;
 
 		void Start()
 		{
@@ -24,7 +25,8 @@ namespace XANFSM.zombie
 			GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
 
-        public void InitFSM() {
+        public void InitFSM() 
+		{
 			fsm = new ZombieStateMachine();
 
 			ChaseState chaseState = new ChaseState(fsm);
@@ -48,5 +50,13 @@ namespace XANFSM.zombie
 			fsm.AddState(attackState);
 			fsm.AddState(patrolState);
 		}
+		void StartAttack()
+        {
+			weapon.GetComponent<AttackTrigger>().StartAttack();
+		}
+		void EndAttack()
+		{
+			weapon.GetComponent<AttackTrigger>().EndAttack();
+		}
 	}	
-}
+}	
