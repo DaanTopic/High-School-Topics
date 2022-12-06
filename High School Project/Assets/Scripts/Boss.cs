@@ -10,6 +10,7 @@ public class Boss : MonoBehaviour
     float minDist = 3;
     float reChargeTime, currentTime;
     int i = 0;
+    bool chake=false;
     [SerializeField] public TextMeshProUGUI Dialogue;
     // Start is called before the first frame update
     void Start()
@@ -25,10 +26,13 @@ public class Boss : MonoBehaviour
         Vector3 Boss = GameObject.FindWithTag("Boss").transform.position;
         GameObject player = GameObject.FindWithTag("Player");
         float dist = Vector3.Distance(playerPosi, Boss);
-
+        GameObject x = GameObject.FindWithTag("rule");
         gamerules gamerules = GameObject.FindWithTag("rule").GetComponent<gamerules>();
+        if (dist < minDist && x.GetComponent<gamerules>().schedule>=10){
+            chake=true;
+        }
 
-        if (dist < minDist)
+        if (chake==true)
         {
 
 
@@ -39,6 +43,7 @@ public class Boss : MonoBehaviour
 
                 if (i == 0)
                 {
+                    x.GetComponent<gamerules>().schedule=x.GetComponent<gamerules>().Mission(10);
                     Dialogue.text = ("Hi,真高興能夠在這樣的狀況下遇到其他倖存者");
                     i++;
                 }
@@ -67,15 +72,20 @@ public class Boss : MonoBehaviour
                     Dialogue.text = ("找到後帶給我,這樣我才能為逃脫做準備");
                     i++;
                 }
-                else if (gamerules.keyget && i == 6)
+                else if (i == 6)
                 {
-
+                    x.GetComponent<gamerules>().Mission(11);    //尋找鑰匙的最後一句對話位置
+                    Dialogue.text = ("");
+                    i++;
+                }
+                else if (gamerules.keyget && i == 7 && dist < minDist)
+                {
+                    x.GetComponent<gamerules>().schedule=x.GetComponent<gamerules>().Mission(12);
                     Dialogue.text = ("看來你找到解藥了!");
                     i++;
                 }
-                else if (gamerules.keyget && i == 7)
+                else if (gamerules.keyget && i == 8)
                 {
-
                     Dialogue.text = ("");
                     i++;
                 }

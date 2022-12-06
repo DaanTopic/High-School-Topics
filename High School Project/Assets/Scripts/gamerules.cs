@@ -13,6 +13,7 @@ public class gamerules : MonoBehaviour
     public bool keyget = false;
     float settime;
     [SerializeField] public TextMeshProUGUI TextMission;
+    [SerializeField] public TextMeshProUGUI Kill;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +52,11 @@ public class gamerules : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)){
             Debug.Log("wasd");
         }
+        if (killamount>10 && schedule == 9)
+        {
+            schedule = Mission(schedule);
+        }
+        Kill.text = ""+killamount;
 
 
     }
@@ -92,6 +98,26 @@ public class gamerules : MonoBehaviour
         {
             TextMission.text = "清理前方殭屍";
             return 9;
+        }
+        if (number == 9)
+        {
+            TextMission.text = "去尋找村長";
+            return 10;
+        }
+        if (number == 10)
+        {
+            TextMission.text = "";
+            return 11;
+        }
+        if (number == 11)
+        {
+            TextMission.text = "尋找素材";
+            return 12;
+        }
+        if (number == 12)
+        {
+            TextMission.text = "";
+            return 13;
         }
         return schedule;
     }

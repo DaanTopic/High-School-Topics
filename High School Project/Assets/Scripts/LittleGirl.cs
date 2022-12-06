@@ -43,7 +43,7 @@ public class LittleGirl : MonoBehaviour
                 
                 if(i == 0)
                 {
-                    x.GetComponent<gamerules>().Mission(7);
+                    x.GetComponent<gamerules>().schedule=x.GetComponent<gamerules>().Mission(7);
                     Debug.Log(2);
                     Dialogue.text = ("Hi,看來你的車子拋錨了");
                 }
@@ -65,7 +65,8 @@ public class LittleGirl : MonoBehaviour
                 }
                 if (i == 5)
                 {
-                    x.GetComponent<gamerules>().Mission(8);
+                    x.GetComponent<gamerules>().schedule=x.GetComponent<gamerules>().Mission(8);
+
                     Dialogue.text = ("");
                 }
                 i++;
