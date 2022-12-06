@@ -11,6 +11,7 @@ TagManager:
   - LittleGirl
   - Boss
   - rule
+  - AttackCollider
   layers:
   - Default
   - TransparentFX

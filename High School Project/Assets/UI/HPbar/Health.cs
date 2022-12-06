@@ -5,9 +5,14 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public float HP;
+    private float HP;
     public Image hPBar;
     public Sprite[] sprite;
+
+    void Start()
+    {
+        HP = 1.0f;
+    }
 
     public void TakeDamage(float amount , float addhealth)
     {
