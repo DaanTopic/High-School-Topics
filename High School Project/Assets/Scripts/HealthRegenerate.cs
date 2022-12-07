@@ -17,12 +17,13 @@ public class HealthRegenerate : MonoBehaviour
     void Update()
     {
         currentTime = Time.time;
-
         GameObject player = GameObject.FindWithTag("Player");
         GameObject tag = GameObject.FindWithTag("rule");
         HealthRegenDist HealthRegenDist = tag.GetComponent<HealthRegenDist>();
-        float dist = HealthRegenDist.dist;
-        if (dist < minDist)
+        Vector3 dist = HealthRegenDist.dist;
+        Vector3 Healthpack = transform.position;
+        float distance = Vector3.Distance(dist, Healthpack);
+        if (distance < minDist)
         {
             if (currentTime > reChargeTime + 0.6f)
             {

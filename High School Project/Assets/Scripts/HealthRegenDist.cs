@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HealthRegenDist : MonoBehaviour
 {
-    public float dist;
+    public Vector3 dist;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +18,11 @@ public class HealthRegenDist : MonoBehaviour
         dist = Distance();
     }
 
-    public float Distance()
+    public Vector3 Distance()
     {
         Vector3 playerPosi = GameObject.FindWithTag("Player").transform.position; //用標籤找玩家位置
-        Vector3 HealthRegen = GameObject.FindWithTag("Healthregenerate").transform.position;
-        return Vector3.Distance(playerPosi, HealthRegen);
+        //Vector3 HealthRegen = GameObject.FindWithTag("Healthregenerate").transform.position;
+        //return Vector3.Distance(playerPosi, HealthRegen);
+        return playerPosi;
     }
 }
