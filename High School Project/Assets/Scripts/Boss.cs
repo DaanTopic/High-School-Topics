@@ -64,28 +64,43 @@ public class Boss : MonoBehaviour
                 }
                 else if (i == 4)
                 {
-                    Dialogue.text = ("素材有1個,四散在地圖各處");
+                    Dialogue.text = ("素材有1個,在接近道路末端的木頭小屋裡");
                     i++;
                 }
                 else if (i == 5)
                 {
-                    Dialogue.text = ("找到後帶給我,這樣我才能為逃脫做準備");
+                    Dialogue.text = ("找到後把他使用掉,這樣我才能為逃脫做準備");
                     i++;
                 }
                 else if (i == 6)
                 {
-                    x.GetComponent<gamerules>().Mission(11);    //尋找鑰匙的最後一句對話位置
+                    x.GetComponent<gamerules>().schedule = x.GetComponent<gamerules>().Mission(11);    //尋找鑰匙的最後一句對話位置
                     Dialogue.text = ("");
                     i++;
                 }
                 else if (gamerules.keyget && i == 7 && dist < minDist)
                 {
-                    x.GetComponent<gamerules>().schedule=x.GetComponent<gamerules>().Mission(12);
                     Dialogue.text = ("看來你找到解藥了!");
                     i++;
                 }
-                else if (gamerules.keyget && i == 8)
+                else if (gamerules.keyget && i == 8 && dist < minDist)
                 {
+                    Dialogue.text = ("接下來是最後一步!");
+                    i++;
+                }
+                else if (gamerules.keyget && i == 9 && dist < minDist)
+                {
+                    Dialogue.text = ("你有看到中間的建築物嗎?");
+                    i++;
+                }
+                else if (gamerules.keyget && i == 10 && dist < minDist)
+                {
+                    Dialogue.text = ("去到那邊,找到鑰匙,把他用掉!");
+                    i++;
+                }
+                else if (gamerules.keyget && i == 11)
+                {
+                    x.GetComponent<gamerules>().schedule = x.GetComponent<gamerules>().Mission(13);
                     Dialogue.text = ("");
                     i++;
                 }

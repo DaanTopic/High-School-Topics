@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HealthRegenerate : MonoBehaviour
@@ -16,10 +17,11 @@ public class HealthRegenerate : MonoBehaviour
     void Update()
     {
         currentTime = Time.time;
-        Vector3 playerPosi = GameObject.FindWithTag("Player").transform.position; //用標籤找玩家位置
-        Vector3 HealthRegen = GameObject.FindWithTag("Healthregenerate").transform.position;
+
         GameObject player = GameObject.FindWithTag("Player");
-        float dist = Vector3.Distance(playerPosi, HealthRegen);
+        GameObject tag = GameObject.FindWithTag("rule");
+        HealthRegenDist HealthRegenDist = tag.GetComponent<HealthRegenDist>();
+        float dist = HealthRegenDist.dist;
         if (dist < minDist)
         {
             if (currentTime > reChargeTime + 0.6f)

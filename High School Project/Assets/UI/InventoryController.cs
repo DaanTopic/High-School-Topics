@@ -174,7 +174,7 @@ namespace Inventory
                             item.Value.quantity);
                     }
                 }
-                else
+                else if(inventoryUI.isActiveAndEnabled == true)
                 {
                     objUi[0].SetActive(true);
                     objUi[1].SetActive(true);

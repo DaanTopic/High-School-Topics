@@ -24,6 +24,7 @@ public class gamerules : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (settime + 1f < Time.time && schedule == 0)
         {
             TextMission.text = "按下WASD來操控人物";
@@ -41,6 +42,7 @@ public class gamerules : MonoBehaviour
         {
             schedule = Mission(schedule);
         }
+        
         if (Input.GetKey(KeyCode.B) && schedule == 4)
         {
             schedule = Mission(schedule);
@@ -57,6 +59,10 @@ public class gamerules : MonoBehaviour
             schedule = Mission(schedule);
         }
         Kill.text = ""+killamount;
+        if (keyget == true && schedule == 12)
+        {
+            schedule = Mission(schedule);
+        }
 
 
     }
@@ -116,8 +122,13 @@ public class gamerules : MonoBehaviour
         }
         if (number == 12)
         {
-            TextMission.text = "";
+            TextMission.text = "回去與村長對話";
             return 13;
+        }
+        if (number == 13)
+        {
+            TextMission.text = "防守村長家";
+            return 14;
         }
         return schedule;
     }
