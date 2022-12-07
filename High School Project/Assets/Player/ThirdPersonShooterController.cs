@@ -119,7 +119,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 
             transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
         }
-        else
+        else if(!animator.GetBool(Animator.StringToHash("Jump")))
         {
             idleRig.weight = 1;
             aimRig.weight = 0;
@@ -202,9 +202,6 @@ public class ThirdPersonShooterController : MonoBehaviour
                 }
             }
         }
-
-
     }
-
 }
 

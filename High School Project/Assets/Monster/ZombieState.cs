@@ -8,8 +8,7 @@ public enum ZombieStateID
 	Idle,
 	Patrol,
 	Chase,
-	Attack,
-	Dead
+	Attack
 }
 
 public enum Transition
@@ -18,8 +17,7 @@ public enum Transition
 	Lost,
 	Found,
 	Patrol,
-	CloseToPlayer,
-	Death
+	CloseToPlayer
 }
 
 namespace XANFSM { 

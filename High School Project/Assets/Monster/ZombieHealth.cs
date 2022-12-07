@@ -57,5 +57,13 @@ namespace XANFSM.zombie
                 zombiePooler.ZombieDead("Zombie", this.gameObject);
             }
         }
+        void OnTriggerEnter(Collider other)
+        {
+            if ((!GameObject.FindWithTag("Player").GetComponent<PlayerAction>().isAttack) && other.gameObject.tag == "Leg")
+            {
+                GameObject.FindWithTag("Player").GetComponent<PlayerAction>().isAttack = true;
+                hp -= 1f;
+            }
+        }
     }
 }

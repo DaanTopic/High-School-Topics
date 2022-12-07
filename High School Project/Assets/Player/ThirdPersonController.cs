@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Animations.Rigging;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -75,6 +76,8 @@ namespace StarterAssets
 
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
+
+        public Rig idleRig, aimRig;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -315,6 +318,7 @@ namespace StarterAssets
                     // update animator if using character
                     if (_hasAnimator)
                     {
+                        idleRig.weight = 0;
                         _animator.SetBool(_animIDJump, true);
                     }
                 }

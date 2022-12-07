@@ -38,12 +38,6 @@ namespace XANFSM.zombie
                     anim.SetBool("Chase", true);
                     Machine.PerformTransition(Transition.Found);
                 }
-                if (Vector3.Distance(player.transform.position, npc.transform.position) >= 5)
-                {
-                    anim.SetBool("Attack", false);
-                    anim.SetBool("Idle", true);
-                    Machine.PerformTransition(Transition.Lost);
-                }
             }
         }
     } 

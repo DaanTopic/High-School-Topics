@@ -39,10 +39,8 @@ namespace XANFSM.zombie
 
 			PatrolState patrolState = new PatrolState(this.gameObject, fsm);
 			patrolState.AddTransition(Transition.Found, ZombieStateID.Chase);
-			patrolState.AddTransition(Transition.Death, ZombieStateID.Dead);
 
 			AttackState attackState = new AttackState(fsm);
-			attackState.AddTransition(Transition.Lost, ZombieStateID.Idle);
 			attackState.AddTransition(Transition.Found, ZombieStateID.Chase);
 
 			fsm.AddState(idleState);

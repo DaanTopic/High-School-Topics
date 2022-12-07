@@ -7,7 +7,6 @@ namespace XANFSM
     public class AttackTrigger : MonoBehaviour
     {
         private bool isAttack = false;
-
         public void StartAttack()
         {
             isAttack = false;
@@ -17,7 +16,6 @@ namespace XANFSM
         {
             GetComponent<Collider>().enabled = false;
         }
-
         public void OnTriggerEnter(Collider other)
         {
             if (!isAttack && other.gameObject.tag == "Player")
