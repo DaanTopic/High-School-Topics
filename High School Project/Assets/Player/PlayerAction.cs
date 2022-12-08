@@ -36,4 +36,5 @@ public class PlayerAction : MonoBehaviour
         Leg.GetComponent<KickTrigger>().EndKick();
         anim.SetBool("Kick", false);
     }
+
 }
