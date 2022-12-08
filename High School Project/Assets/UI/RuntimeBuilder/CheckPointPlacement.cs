@@ -13,25 +13,29 @@ public class CheckPointPlacement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player" || other.gameObject.tag == "Zombie")
         {
             buildingManager.canPlace = false;
             ck1 = true;
         }
-        else
+        else if(other.gameObject.GetComponent<CheckPointPlacement>() != null)
         {
             buildingManager.canPlace = false;
             ck2 = true;
+        }
+        else
+        {
+            buildingManager.canPlace = false;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Zombie")
         {
             ck1 = false;
         }
-        else
+        else if (other.gameObject.GetComponent<CheckPointPlacement>() != null)
         {
             ck2 = false;
         }

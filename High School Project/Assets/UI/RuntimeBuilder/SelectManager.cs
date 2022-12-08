@@ -19,7 +19,7 @@ public class SelectManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo, 1000)){
-                if (hitInfo.collider.gameObject.CompareTag("Object")){
+                if (hitInfo.collider.gameObject.GetComponent<CheckPointPlacement>() != null){
                     Select(hitInfo.collider.gameObject);
                 }
             }

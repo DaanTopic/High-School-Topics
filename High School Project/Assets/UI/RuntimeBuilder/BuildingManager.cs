@@ -9,7 +9,7 @@ using Inventory.Model;
 
 public class BuildingManager : MonoBehaviour
 {
-    public GameObject[] gameObjects, objUi;
+    public GameObject[] gameObjects, objUI;
     public GameObject pendingObjects;
     [SerializeField] private Material[] materials;
     private Vector3 pos;
@@ -70,7 +70,7 @@ public class BuildingManager : MonoBehaviour
     {
         pendingObjects.GetComponent<MeshRenderer>().material = materials[index + 2];
         pendingObjects.GetComponent<Collider>().isTrigger = false;
-        objUi[1].SetActive(false);
+        objUI[1].SetActive(true);
         if (pendingObjects.name == "sentryGun(Clone)")
         {
             pendingObjects.GetComponent<sentryGun>().enabled = true;
@@ -97,8 +97,12 @@ public class BuildingManager : MonoBehaviour
         {
             buildUI.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
-            objUi[0].SetActive(false);
-            objUi[1].SetActive(false);
+            
+            for(int i = 0;i < objUI.Length; i++)
+            {
+                objUI[i].SetActive(false);
+            }
+            
 
             Vector3 pos = PlayPosition.transform.position;
             pos.y += 5f;
@@ -113,6 +117,8 @@ public class BuildingManager : MonoBehaviour
         {
             reset();
             buildUI.SetActive(false);
+            objUI[2].SetActive(true);
+            objUI[3].SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
 
             aimVirtualCamera.gameObject.SetActive(false);
@@ -142,7 +148,7 @@ public class BuildingManager : MonoBehaviour
     {
         reset();
         index = value;
-        objUi[1].SetActive(true);
+        objUI[1].SetActive(false);
         pendingObjects = Instantiate(gameObjects[index], pos, transform.rotation);
         pendingObjects.GetComponent<Collider>().isTrigger = true;
     }
@@ -150,8 +156,8 @@ public class BuildingManager : MonoBehaviour
     public void Cancel()
     {
         reset();
-        objUi[0].SetActive(false);
-        objUi[1].SetActive(false);
+        objUI[0].SetActive(false);
+        objUI[1].SetActive(false);
     }
 
 }
