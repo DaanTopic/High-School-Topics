@@ -57,15 +57,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1
-        functionName: EndKick
+      - time: 0.03782506
+        functionName: StartKick
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0
-        functionName: StartKick
+      - time: 1
+        functionName: EndKick
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

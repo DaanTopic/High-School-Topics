@@ -28,6 +28,7 @@ public class PlayerAction : MonoBehaviour
     void StartKick()
     {
         isAttack = false;
+        Debug.Log("EFwfefwe");
         Leg.GetComponent<KickTrigger>().StartKick();
     }
     void EndKick()

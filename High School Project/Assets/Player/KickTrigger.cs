@@ -7,6 +7,7 @@ public class KickTrigger : MonoBehaviour
     public void StartKick()
     {
         GetComponent<Collider>().enabled = true;
+        Debug.Log("HHHHHHHHHHHHHHHH");
     }
     public void EndKick()
     {
