@@ -109,6 +109,14 @@ namespace Inventory
             }
         }
 
+        public void BuildUse(ItemSO itemSO , int quantity)
+        {
+            inventoryData.RemoveItem(itemSO, quantity);
+            Debug.Log("build");
+            inventoryUI.ResetSelection();
+            audioSource.PlayOneShot(dropClip);
+        }
+
         private void DropItem(int itemIndex, int quantity)
         {
             inventoryData.RemoveItem(itemIndex, quantity);

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using Unity.VisualScripting;
+using static UnityEditor.Progress;
 
 namespace Inventory.Model
 {
@@ -18,6 +20,8 @@ namespace Inventory.Model
 
         public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated;
 
+        [field: SerializeField]
+        public ItemSO itemSO;
         public void Initialize()
         {
             inventoryItems = new List<InventoryItem>();
@@ -105,9 +109,6 @@ namespace Inventory.Model
 
         public void RemoveItem(int itemIndex, int amount)
         {
-            ItemSO itemSO = null;
-            var tmp = inventoryItems.Where(a => a.item = itemSO).Select(x => x);
-            
             if(inventoryItems.Count > itemIndex)
             {
                 if (inventoryItems[itemIndex].IsEmpty)
@@ -119,6 +120,25 @@ namespace Inventory.Model
                     inventoryItems[itemIndex] = inventoryItems[itemIndex].ChangeQuantity(reminder);
                 InformAboutChange();
             }
+        }
+        //
+        public void RemoveItem(ItemSO itemSO , int amount)
+        {
+            Debug.Log("frist");
+            
+            var temp = inventoryItems.FirstOrDefault(x => x.item == itemSO);
+            var index = inventoryItems.IndexOf(temp);
+            if (temp.IsEmpty)
+                return;
+            int count = inventoryItems[index].quantity - amount;
+            Debug.Log(inventoryItems[index].quantity);
+
+            if(count <= 0)
+                inventoryItems[index] = InventoryItem.GetEmptyItem();
+            else
+                inventoryItems[index] = inventoryItems[index].ChangeQuantity(count);
+            InformAboutChange();
+            Debug.Log(temp);
         }
 
         public void AddItem(InventoryItem item)

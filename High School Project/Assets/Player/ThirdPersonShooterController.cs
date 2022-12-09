@@ -8,6 +8,8 @@ using System.Threading;
 using UnityEngine.UI;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.Animations.Rigging;
+using Inventory;
+using Inventory.Model;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     private Animator animator;
     public AudioClip LandingAudioClip;
     [Range(0, 5)] public float GunAudioVolume = 0.5f;
+    public ItemSO ItemSO;
 
     private void Awake()
     {
@@ -76,6 +79,12 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            InventoryController inventoryController = GetComponent<InventoryController>();
+            inventoryController.BuildUse(ItemSO, 1);
+            Debug.Log("USE R");    
+        }
         //
         if (shakeTimer > 0)
         {
@@ -85,8 +94,6 @@ public class ThirdPersonShooterController : MonoBehaviour
 
             cinemachineBasicMultiChannelPerlin.m_AmplitudeGain =
                 Mathf.Lerp(startingIntensity, 0f, shakeTimer / shakeTimerTotal);
-
-
         }
 
         //
