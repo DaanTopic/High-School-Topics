@@ -299,7 +299,7 @@ Transform:
   - {fileID: 704871571524405553}
   - {fileID: 8046879159646050855}
   m_Father: {fileID: 6819624279100919272}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1418993575847437836
 GameObject:
@@ -1384,7 +1384,7 @@ Transform:
   m_Children:
   - {fileID: 2349084709217951190}
   m_Father: {fileID: 6819624279100919272}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4664896500811651672
 GameObject:
@@ -1619,10 +1619,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8573833327695509548}
-  - component: {fileID: 3939899862976783251}
-  - component: {fileID: 38482220}
   m_Layer: 7
-  m_Name: AttackColider
+  m_Name: handPos
   m_TagString: AttackCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1636,38 +1634,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6117895600086707560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.00132, z: -0}
-  m_LocalScale: {x: 0.0012465101, y: 0.006051967, z: 0.0012439335}
+  m_LocalPosition: {x: 0, y: 1.221, z: 0.004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3549744087991148827}
-  m_RootOrder: 5
+  m_Father: {fileID: 6819624279100919272}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3939899862976783251
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6117895600086707560}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &38482220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6117895600086707560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d7f0110e5b8d1943a1972e98035ec1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6187324994710498078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,11 +1691,11 @@ GameObject:
   - component: {fileID: 5961223921794105111}
   - component: {fileID: 7856256637608974439}
   - component: {fileID: 7551841282530374853}
-  - component: {fileID: 1577766298748914362}
   - component: {fileID: 1577766298748914361}
   - component: {fileID: -1375467674025052135}
+  - component: {fileID: -9069586830579976893}
   m_Layer: 7
-  m_Name: monster
+  m_Name: Ranger
   m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1740,6 +1713,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8573833327695509548}
   - {fileID: 4751717274499837814}
   - {fileID: 2097993913233073266}
   - {fileID: 7821953651956928007}
@@ -1832,19 +1806,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &1577766298748914362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6192445686517126994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b7e94afa90154643ae51d446e500693, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 6117895600086707560}
 --- !u!114 &1577766298748914361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1870,6 +1831,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
+--- !u!114 &-9069586830579976893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6192445686517126994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e7793efb7db254468f0aef2914dda8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rock: {fileID: 3105107068680526197, guid: a756dbf033d0266419533f6b371676fe, type: 3}
+  hand: {fileID: 6117895600086707560}
 --- !u!1 &6227647746863042735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,7 +1939,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6819624279100919272}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &9217470575920816380
 SkinnedMeshRenderer:
@@ -2387,7 +2362,6 @@ Transform:
   - {fileID: 4690731367385188115}
   - {fileID: 6929663210289485046}
   - {fileID: 2754409615142669003}
-  - {fileID: 8573833327695509548}
   m_Father: {fileID: 4943183080765146472}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

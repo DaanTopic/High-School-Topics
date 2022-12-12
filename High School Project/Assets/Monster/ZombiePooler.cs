@@ -35,7 +35,7 @@ namespace XANFSM.zombie
                     GameObject obj = Instantiate(pool.prefab);
                     obj.transform.SetParent(inGamePool.transform);
                     obj.SetActive(false);
-                    zombiePool.Enqueue(obj); // 將對象入列
+                    zombiePool.Enqueue(obj);
                 }
                 poolDictionary.Add(pool.tag, zombiePool);
             }
@@ -48,7 +48,7 @@ namespace XANFSM.zombie
                 return null;
             }
 
-            GameObject objectToSpawn = poolDictionary[tag].Dequeue(); //出列，獲取對象
+            GameObject objectToSpawn = poolDictionary[tag].Dequeue();
             objectToSpawn.transform.position = positon;
             objectToSpawn.transform.rotation = rotation;
             objectToSpawn.SetActive(true);
