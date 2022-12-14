@@ -28,12 +28,12 @@ public class PlayerAction : MonoBehaviour
     void StartKick()
     {
         isAttack = false;
-        Debug.Log("EFwfefwe");
         Leg.GetComponent<KickTrigger>().StartKick();
     }
     void EndKick()
     {
         Leg.GetComponent<KickTrigger>().EndKick();
+        Debug.Log("buffer");
         anim.SetBool("Kick", false);
     }
 

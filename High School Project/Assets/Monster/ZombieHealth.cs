@@ -21,8 +21,16 @@ namespace XANFSM.zombie
         void Update()
         {
             timer += Time.deltaTime;
-        }
+            if (hp <= 0)
+            {
+                ZombiePooler zombiePooler = ZombiePooler.Instance;
 
+                ++gamerules.killamount;
+                hp = 1.0f;
+                var tag = this.gameObject.tag;
+                zombiePooler.ZombieDead(tag, this.gameObject);
+            }
+        }
         void OnCollisionStay(Collision collision)
         {
             if (timer >= duration && collision.gameObject.tag == "BarbedWire")
@@ -32,14 +40,6 @@ namespace XANFSM.zombie
                 timer = 0f;
                 Debug.Log("Enemy touched");
             }
-            if (hp <= 0)
-            {
-                ZombiePooler zombiePooler = ZombiePooler.Instance;
-
-                ++gamerules.killamount;
-                hp = 1.0f;
-                zombiePooler.ZombieDead("Zombie", this.gameObject);
-            }
         }
 
         void OnCollisionEnter(Collision collision)
@@ -48,16 +48,8 @@ namespace XANFSM.zombie
             {
                 hp -= 0.1f;
             }
-            if (hp <= 0)
-            {
-                ZombiePooler zombiePooler = ZombiePooler.Instance;
-
-                ++gamerules.killamount;
-                hp = 1.0f;
-                zombiePooler.ZombieDead("Zombie", this.gameObject);
-            }
         }
-        void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             if ((!GameObject.FindWithTag("Player").GetComponent<PlayerAction>().isAttack) && other.gameObject.tag == "Leg")
             {

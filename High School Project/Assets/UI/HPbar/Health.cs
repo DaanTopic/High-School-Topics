@@ -28,7 +28,6 @@ public class Health : MonoBehaviour
         if (HP <= 0)
         {
             HP = 0;
-            Debug.Log("You Died!");
         }
 
         hPBar.GetComponent<Image>().fillAmount = HP;

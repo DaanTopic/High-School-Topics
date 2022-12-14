@@ -10,7 +10,7 @@ public class gamerules : MonoBehaviour
     double GameCollapseTime;
     public int schedule = 0;
     public int killamount = 0;
-    public bool keyget = false;
+    public bool keyget = false, Events = false;
     float settime;
     [SerializeField] public TextMeshProUGUI TextMission;
     [SerializeField] public TextMeshProUGUI Kill;
@@ -52,7 +52,6 @@ public class gamerules : MonoBehaviour
             schedule = Mission(schedule);
         }
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)){
-            Debug.Log("wasd");
         }
         if (killamount>10 && schedule == 9)
         {
@@ -63,8 +62,6 @@ public class gamerules : MonoBehaviour
         {
             schedule = Mission(schedule);
         }
-
-
     }
 
     public int Mission(int number)
@@ -132,6 +129,4 @@ public class gamerules : MonoBehaviour
         }
         return schedule;
     }
-
-
 }

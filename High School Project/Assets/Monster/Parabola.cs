@@ -6,8 +6,6 @@ public class Parabola : MonoBehaviour
 {
     public int Duration = 5;
     private Transform tStart, tEnd;
-
-    private float _time;
     private float _duration;
 
     void Start()
@@ -19,12 +17,12 @@ public class Parabola : MonoBehaviour
     {
         var pStart = tStart.position;
         var pEnd = tEnd.position;
-        var p1 = (pStart + pEnd) / 2 + (Vector3.up * 1);
+        var p = (pStart + pEnd) / 2 + (Vector3.up * 1);
 
         var t = _duration / Duration;
         this.gameObject.transform.position =
             Mathf.Pow(1 - t, 2) * pStart +
-            2 * t * (1 - t) * p1 +
+            2 * t * (1 - t) * p +
             Mathf.Pow(t, 2) * pEnd;
 
         _duration += Time.deltaTime;

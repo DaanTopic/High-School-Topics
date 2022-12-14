@@ -6,19 +6,26 @@ using StarterAssets;
 using System;
 using Inventory.UI;
 using Inventory.Model;
+using Mono.Cecil;
+using UnityEngine.InputSystem.XR;
+using Inventory;
 
 public class BuildingManager : MonoBehaviour
 {
-    public GameObject[] gameObjects, objUI;
-    public GameObject pendingObjects;
-    [SerializeField] private Material[] materials;
     private Vector3 pos;
     private RaycastHit hitInfo;
-    [SerializeField] private LayerMask mask;
     private int index;
     private float rotateAmount = 45.0f;
+
+    public GameObject[] gameObjects, objUI;
+    public GameObject pendingObjects;
+
+    [SerializeField] private Material[] materials;
+    [SerializeField] private LayerMask mask;
+    
     public bool canPlace = true;
     public GameObject buildUI;
+    public ItemSO resource;
 
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
     [SerializeField] private GameObject PlayPosition;
@@ -148,9 +155,13 @@ public class BuildingManager : MonoBehaviour
     {
         reset();
         index = value;
-        objUI[1].SetActive(false);
-        pendingObjects = Instantiate(gameObjects[index], pos, transform.rotation);
-        pendingObjects.GetComponent<Collider>().isTrigger = true;
+        var control = GameObject.FindWithTag("Player").GetComponent<InventoryController>();
+        if (control.Selectnumber(resource) > 0)
+        {
+            objUI[1].SetActive(false);
+            pendingObjects = Instantiate(gameObjects[index], pos, transform.rotation);
+            pendingObjects.GetComponent<Collider>().isTrigger = true;
+        }
     }
 
     public void Cancel()

@@ -140,6 +140,17 @@ namespace Inventory.Model
             InformAboutChange();
             Debug.Log(temp);
         }
+        public int SelectItem(ItemSO itemSO)
+        {
+            var temp = inventoryItems.FirstOrDefault(x => x.item == itemSO);
+            var index = inventoryItems.IndexOf(temp);
+            if (temp.IsEmpty)
+                return 0;
+            int count = inventoryItems[index].quantity;
+            Debug.Log(inventoryItems[index].quantity);
+
+            return count;
+        }
 
         public void AddItem(InventoryItem item)
         {

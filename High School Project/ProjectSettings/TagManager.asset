@@ -12,6 +12,8 @@ TagManager:
   - Boss
   - rule
   - Leg
+  - AttackCollider
+  - Ranger
   layers:
   - Default
   - TransparentFX

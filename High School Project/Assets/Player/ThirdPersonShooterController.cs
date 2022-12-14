@@ -83,6 +83,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             InventoryController inventoryController = GetComponent<InventoryController>();
             inventoryController.BuildUse(ItemSO, 1);
+            inventoryController.Selectnumber(ItemSO);
             Debug.Log("USE R");    
         }
         //

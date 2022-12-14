@@ -116,6 +116,10 @@ namespace Inventory
             inventoryUI.ResetSelection();
             audioSource.PlayOneShot(dropClip);
         }
+        public int Selectnumber(ItemSO itemSO)
+        {
+            return inventoryData.SelectItem(itemSO);
+        }
 
         private void DropItem(int itemIndex, int quantity)
         {

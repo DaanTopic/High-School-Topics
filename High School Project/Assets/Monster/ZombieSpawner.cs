@@ -8,19 +8,23 @@ namespace XANFSM.zombie
     {
         ZombiePooler zombiePooler;
         public Transform[] Points;
-        public int Maxmum, zombieAmount;
+        public int Maxmum, zombieAmount = 0, Maxmum_2, rangerAmount = 0;
 
-        private void Start()
+        void Start()
         {
-            zombieAmount = 0;
             zombiePooler = ZombiePooler.Instance;
         }
-        private void FixedUpdate()
+        void FixedUpdate()
         {
             if (zombieAmount < Maxmum)
             {
                 zombiePooler.SpawnFromPool("Zombie", GetPoints(), Quaternion.identity);
                 zombieAmount++;
+            }
+            if (rangerAmount < Maxmum)
+            {
+                zombiePooler.SpawnFromPool("Ranger", GetPoints(), Quaternion.identity);
+                rangerAmount++;
             }
         }
         public Vector3 GetPoints()
