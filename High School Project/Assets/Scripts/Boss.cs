@@ -90,15 +90,30 @@ public class Boss : MonoBehaviour
                 }
                 else if (gamerules.keyget && i == 9 && dist < minDist)
                 {
-                    Dialogue.text = ("你有看到中間的建築物嗎?");
+                    Dialogue.text = ("你等我修好我的車鑰匙");
                     i++;
                 }
                 else if (gamerules.keyget && i == 10 && dist < minDist)
                 {
-                    Dialogue.text = ("去到那邊,找到鑰匙,把他用掉!");
+                    Dialogue.text = ("這樣我們三個才能一起逃脫");
                     i++;
                 }
-                else if (gamerules.keyget && i == 11)
+                else if (gamerules.keyget && i == 11 && dist < minDist)
+                {
+                    Dialogue.text = ("但是修鑰匙的聲音會吸引殭屍");
+                    i++;
+                }
+                else if (gamerules.keyget && i == 12 && dist < minDist)
+                {
+                    Dialogue.text = ("但是修鑰匙的聲音會吸引殭屍");
+                    i++;
+                }
+                else if (gamerules.keyget && i == 13 && dist < minDist)
+                {
+                    Dialogue.text = ("在這期間,請幫忙防守這裡!");
+                    i++;
+                }
+                else if (gamerules.keyget && i == 14)
                 {
                     x.GetComponent<gamerules>().schedule = x.GetComponent<gamerules>().Mission(13);
                     Dialogue.text = ("");
