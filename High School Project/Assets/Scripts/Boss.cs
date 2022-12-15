@@ -78,8 +78,13 @@ public class Boss : MonoBehaviour
                     Dialogue.text = ("");
                     i++;
                 }
+                else if (gamerules.keyget && i == 7 && x.GetComponent<gamerules>().schedule ==12)
+                {
+                    x.GetComponent<gamerules>().schedule = x.GetComponent<gamerules>().Mission(12); 
+                }
                 else if (gamerules.keyget && i == 7 && dist < minDist)
                 {
+                    x.GetComponent<gamerules>().schedule = x.GetComponent<gamerules>().Mission(13); 
                     Dialogue.text = ("看來你找到解藥了!");
                     i++;
                 }
@@ -115,7 +120,7 @@ public class Boss : MonoBehaviour
                 }
                 else if (gamerules.keyget && i == 14)
                 {
-                    x.GetComponent<gamerules>().schedule = x.GetComponent<gamerules>().Mission(13);
+                    x.GetComponent<gamerules>().schedule = x.GetComponent<gamerules>().Mission(14);
                     Dialogue.text = ("");
                     i++;
                 }
