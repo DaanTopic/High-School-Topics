@@ -24,6 +24,7 @@ public class gamerules : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (settime + 1f < Time.time && schedule == 0)
         {
             TextMission.text = "按下WASD來操控人物";
@@ -65,6 +66,7 @@ public class gamerules : MonoBehaviour
 
     public int Mission(int number)
     {
+
         if (number == 1)
         {
             TextMission.text = "按下滑鼠右鍵來瞄準";

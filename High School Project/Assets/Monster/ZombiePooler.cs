@@ -52,31 +52,24 @@ namespace XANFSM.zombie
             objectToSpawn.transform.position = positon;
             objectToSpawn.transform.rotation = rotation;
             objectToSpawn.SetActive(true);
-            switch (tag)
-            {
-                case "Zombie":
-                    objectToSpawn.GetComponent<Zombie>().InitFSM();
-                    break;
-                case "Ranger":
-                    objectToSpawn.GetComponent<Ranger>().InitFSM();
-                    break;
-            }
 
             return objectToSpawn;
         }
         public void ZombieDead(string tag, GameObject zombie)
         {
             poolDictionary[tag].Enqueue(zombie);
-            zombie.SetActive(false);
             switch (tag)
             {
                 case "Zombie":
+                    zombie.GetComponent<Zombie>().InitFSM();
                     GetComponent<ZombieSpawner>().zombieAmount -= 1;
                     break;
                 case "Ranger":
+                    zombie.GetComponent<Ranger>().InitFSM();
                     GetComponent<ZombieSpawner>().rangerAmount -= 1;
                     break;
             }
+            zombie.SetActive(false);
         }
     }
 }

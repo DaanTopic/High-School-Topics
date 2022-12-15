@@ -158,6 +158,7 @@ public class BuildingManager : MonoBehaviour
         var control = GameObject.FindWithTag("Player").GetComponent<InventoryController>();
         if (control.Selectnumber(resource) > 0)
         {
+            control.BuildUse(resource, 1);
             objUI[1].SetActive(false);
             pendingObjects = Instantiate(gameObjects[index], pos, transform.rotation);
             pendingObjects.GetComponent<Collider>().isTrigger = true;

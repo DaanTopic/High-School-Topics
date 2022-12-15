@@ -1696,7 +1696,7 @@ GameObject:
   - component: {fileID: -9069586830579976893}
   m_Layer: 7
   m_Name: Ranger
-  m_TagString: Zombie
+  m_TagString: Ranger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

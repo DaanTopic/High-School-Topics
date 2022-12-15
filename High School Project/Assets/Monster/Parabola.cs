@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class Parabola : MonoBehaviour
 {
-    public int Duration = 5;
-    private Transform tStart, tEnd;
+    public float Duration;
     private float _duration;
+    private Vector3 p, pStart, pEnd;
 
     void Start()
     {
-        tStart = this.gameObject.transform;
-        tEnd = GameObject.FindWithTag("Player").transform;
+        pStart = this.gameObject.transform.position;
+        pEnd = GameObject.FindWithTag("Player").transform.position;
+        p = (pStart + pEnd) / 2 + (Vector3.up * 2.25f);
     }
     private void Update()
     {
-        var pStart = tStart.position;
-        var pEnd = tEnd.position;
-        var p = (pStart + pEnd) / 2 + (Vector3.up * 1);
-
         var t = _duration / Duration;
         this.gameObject.transform.position =
             Mathf.Pow(1 - t, 2) * pStart +
