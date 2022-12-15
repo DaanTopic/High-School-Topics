@@ -7,7 +7,7 @@ public class sentryGun : MonoBehaviour
     // Start is called before the first frame update
     public float attackRange = 30.0f;
     public float shootAngleDistance = 10.0f;
-    public Transform target;
+    public GameObject target;
     [SerializeField] private Transform pfBulletProjectile;
     [SerializeField] private Transform spawnBulletPosition;
     private float reloadTime, currentTime;
@@ -16,24 +16,22 @@ public class sentryGun : MonoBehaviour
     {
         reloadTime = Time.time;
     }
-    // Update is called once per frame
     void Update()
     {
         currentTime = Time.time;
-        if (target == null && GameObject.FindWithTag("Zombie"))
+        if (target == null || !target.activeSelf)
         {
-            target = GameObject.FindWithTag("Zombie").transform;
+            target = GameObject.FindWithTag("Zombie");
         }
         if (target == null) return;
-        // if (!CanSeeTarget())
-        //   return;
-        
-        var targetPoint = target.position;
+        //if (!CanSeeTarget()) return;
+
+        var targetPoint = target.transform.position;
         var targetRotation = Quaternion.LookRotation(targetPoint - transform.position, Vector3.up);
         targetPoint = new Vector3(0, 15f, 0) + targetPoint;
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
 
-        Vector3 aimDir = (transform.position - target.position).normalized;
+        Vector3 aimDir = (transform.position - target.transform.position).normalized;
         aimDir *= -1;
         if(currentTime > reloadTime + 0.3f) 
         {
@@ -43,11 +41,11 @@ public class sentryGun : MonoBehaviour
     }
     bool CanSeeTarget()
     {
-        if (Vector3.Distance(transform.position, target.position) > attackRange)
+        if (Vector3.Distance(transform.position, target.transform.position) > attackRange)
             return false;
 
         RaycastHit hit;
-        if (Physics.Linecast(transform.position, target.position, out hit))
+        if (Physics.Linecast(transform.position, target.transform.position, out hit))
             return hit.transform == target;
 
         return false;
