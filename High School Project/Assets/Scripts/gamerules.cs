@@ -24,7 +24,6 @@ public class gamerules : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (settime + 1f < Time.time && schedule == 0)
         {
             TextMission.text = "按下WASD來操控人物";
@@ -62,11 +61,18 @@ public class gamerules : MonoBehaviour
         {
             schedule = Mission(schedule);
         }
+        if(schedule==15 && (Time.time-settime)>10.0f &&(Time.time-settime)<99.0f ){
+            Events=true;
+        }
+        if(schedule==15 && (Time.time-settime)>100.0f){
+            Events=false;
+            schedule=Mission(schedule);
+        }
+        Debug.Log(Time.time-settime);
     }
 
     public int Mission(int number)
     {
-
         if (number == 1)
         {
             TextMission.text = "按下滑鼠右鍵來瞄準";
@@ -124,8 +130,15 @@ public class gamerules : MonoBehaviour
         }
         if (number == 13)
         {
-            TextMission.text = "防守村長家";
+            TextMission.text = " ";
+            settime = Time.time;
             return 14;
+        }
+        if (number == 14)
+        {
+            TextMission.text = "防守村長家";
+            settime = Time.time;
+            return 15;
         }
         return schedule;
     }

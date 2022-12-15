@@ -30,7 +30,8 @@ namespace XANFSM.zombie
 
         public override void Reason(GameObject npc)
         {
-            if ((Vector3.Distance(player.transform.position, npc.transform.position) > 15) /*&& !Events*/)
+            var events = GameObject.Find("GameRules").GetComponent<gamerules>().Events;
+            if ((Vector3.Distance(player.transform.position, npc.transform.position) > 15) && !events)
             {
                 anim.SetBool("Chase", false);
                 anim.SetBool("Idle", true);
