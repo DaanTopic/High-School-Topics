@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class ReadString : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class ReadString : MonoBehaviour
         using (StreamWriter writer = new StreamWriter(Application.streamingAssetsPath+"Save.txt"))
         {
             // Write the string to the file
-            writer.Write("13516816,848498,3483438");
+            writer.Write("5,3,38");
             
         }
         using (StreamReader reader = new StreamReader(Application.streamingAssetsPath+ "Save.txt"))

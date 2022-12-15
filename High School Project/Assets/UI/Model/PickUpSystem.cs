@@ -12,6 +12,7 @@ public class PickUpSystem : MonoBehaviour
         Item item = other.GetComponent<Item>();
         if (item != null)
         {
+            Debug.Log("pick");
             int reminder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
             if (reminder == 0)
                 item.DestroyItem();
