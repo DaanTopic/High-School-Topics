@@ -10,6 +10,7 @@ namespace XANFSM.zombie
     {
         private gamerules gamerules;
         public float hp = 1.0f;
+        public Transform deadbody;
         float timer = 0f;
         float duration = 0f;
 
@@ -21,14 +22,18 @@ namespace XANFSM.zombie
         void Update()
         {
             timer += Time.deltaTime;
+            Vector3 vector3 = transform.position;
             if (hp <= 0)
             {
-                ZombiePooler zombiePooler = ZombiePooler.Instance;
+                
 
+                ZombiePooler zombiePooler = ZombiePooler.Instance;
                 ++gamerules.killamount;
                 hp = 1.0f;
                 var tag = this.gameObject.tag;
                 zombiePooler.ZombieDead(tag, this.gameObject);
+
+                
             }
         }
         void OnCollisionStay(Collision collision)

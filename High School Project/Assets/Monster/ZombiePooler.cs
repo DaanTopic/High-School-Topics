@@ -14,11 +14,12 @@ namespace XANFSM.zombie
     public class ZombiePooler : MonoBehaviour
     {
         public GameObject inGamePool;
-
+        public Transform deadbody;
         public List<PoolItem> pools;
         Dictionary<string, Queue<GameObject>> poolDictionary;
 
         public static ZombiePooler Instance;
+        
         private void Awake()
         {
             Instance = this;
@@ -69,6 +70,7 @@ namespace XANFSM.zombie
                     GetComponent<ZombieSpawner>().rangerAmount -= 1;
                     break;
             }
+            Instantiate(deadbody, zombie.transform.position , Quaternion.identity);
             zombie.SetActive(false);
         }
     }
