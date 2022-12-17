@@ -8,10 +8,13 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public int sceneValue;
-    public void GameStart()
+    public void NewGame()
     {
         SceneManager.LoadScene(sceneValue);
         Cursor.lockState = CursorLockMode.Locked;
+    }
+    public void Countinue()
+    {
     }
     public void Quit()
     {
