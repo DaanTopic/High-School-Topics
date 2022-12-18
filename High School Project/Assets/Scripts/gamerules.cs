@@ -147,6 +147,21 @@ public class gamerules : MonoBehaviour
             settime = Time.time;
             return 16;
         }
+        if (number == 16)
+        {
+            TextMission.text = "";
+            return 17;
+        }
+        if (number == 17)
+        {
+            TextMission.text = "";
+            return 18;
+        }
+        if (number == 18)
+        {
+            TextMission.text = "";
+            return 19;
+        }
         return schedule;
     }
 }

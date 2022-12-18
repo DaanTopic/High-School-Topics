@@ -9,7 +9,7 @@ public class Boss : MonoBehaviour
 {
     float minDist = 3;
     float reChargeTime, currentTime;
-    int i = 0;
+    public int i = 0;
     bool chake=false;
     [SerializeField] public TextMeshProUGUI Dialogue;
     // Start is called before the first frame update
@@ -126,6 +126,7 @@ public class Boss : MonoBehaviour
                 }
                 else if (gamerules.BossPostEventDialogue && i == 15)
                 {
+                    x.GetComponent<gamerules>().schedule = x.GetComponent<gamerules>().Mission(16);
                     Dialogue.text = ("看來你把成功防守住了!");
                     i++;
                 }
