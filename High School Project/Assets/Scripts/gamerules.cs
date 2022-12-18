@@ -154,7 +154,7 @@ public class gamerules : MonoBehaviour
         }
         if (number == 17)
         {
-            TextMission.text = "";
+            TextMission.text = "到城鎮末端,發動汽車";
             return 18;
         }
         if (number == 18)

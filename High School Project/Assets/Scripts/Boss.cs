@@ -137,6 +137,27 @@ public class Boss : MonoBehaviour
                 }
                 else if (gamerules.BossPostEventDialogue && i == 17)
                 {
+                    Dialogue.text = ("但到門口的路上那麼多的殭屍,我們恐怕是到不了了");
+                    i++;
+                }
+                else if (gamerules.BossPostEventDialogue && i == 18)
+                {
+                    Dialogue.text = ("你拿著車鑰匙自己離開吧,我們可以保護自己的");
+                    i++;
+                }
+                else if (gamerules.BossPostEventDialogue && i == 19)
+                {
+                    Dialogue.text = ("如果你見的到外面的人的話,請通知他們這裡的情況");
+                    i++;
+                }
+                else if (gamerules.BossPostEventDialogue && i == 20)
+                {
+                    Dialogue.text = ("再會了");
+                    i++;
+                }
+                else if (gamerules.BossPostEventDialogue && i == 21)
+                {
+                    x.GetComponent<gamerules>().schedule = x.GetComponent<gamerules>().Mission(17);
                     Dialogue.text = ("");
                     i++;
                 }
