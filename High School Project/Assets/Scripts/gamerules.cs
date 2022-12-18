@@ -10,7 +10,7 @@ public class gamerules : MonoBehaviour
     double GameCollapseTime;
     public int schedule = 0;
     public int killamount = 0;
-    public bool keyget = false, Events = false;
+    public bool keyget = false, Events = false, BossPostEventDialogue = false;
     float settime;
     [SerializeField] public TextMeshProUGUI TextMission;
     [SerializeField] public TextMeshProUGUI Kill;
@@ -66,7 +66,8 @@ public class gamerules : MonoBehaviour
         }
         if(schedule==15 && (Time.time-settime)>100.0f){
             Events=false;
-            schedule=Mission(schedule);
+            BossPostEventDialogue=true;
+            schedule =Mission(schedule);
         }
         Debug.Log(Time.time-settime);
     }
@@ -139,6 +140,12 @@ public class gamerules : MonoBehaviour
             TextMission.text = "防守村長家";
             settime = Time.time;
             return 15;
+        }
+        if (number == 15)
+        {
+            TextMission.text = "回去與村長對話";
+            settime = Time.time;
+            return 16;
         }
         return schedule;
     }
