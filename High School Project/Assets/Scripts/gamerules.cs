@@ -11,7 +11,9 @@ public class gamerules : MonoBehaviour
     public int schedule = 0;
     public int killamount = 0;
     public bool keyget = false, Events = false, BossPostEventDialogue = false;
-    float settime;
+    float settime,floattime;
+    int inttime;
+    double doubletime=1;
     [SerializeField] public TextMeshProUGUI TextMission;
     [SerializeField] public TextMeshProUGUI Kill;
     // Start is called before the first frame update
@@ -24,6 +26,8 @@ public class gamerules : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        doubletime=100-(Time.time-settime);
+        
         if (settime + 1f < Time.time && schedule == 0)
         {
             TextMission.text = "按下WASD來操控人物";
@@ -56,7 +60,13 @@ public class gamerules : MonoBehaviour
         {
             schedule = Mission(schedule);
         }
-        Kill.text = ""+killamount;
+        if(schedule==15){
+            Kill.text = "防守剩餘時間:"+Math.Round(doubletime, 2);
+        }
+        else{
+            Kill.text = ""+killamount;
+        }
+        
         if (keyget == true && schedule == 12)
         {
             schedule = Mission(schedule);

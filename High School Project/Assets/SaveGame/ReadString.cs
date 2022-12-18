@@ -48,6 +48,7 @@ public class ReadString : MonoBehaviour
             SaveMission();
             
         }
+        Loading();
     }
     void SaveMission(){
         Vector3 playerPosi = GameObject.FindWithTag("Player").transform.position; 

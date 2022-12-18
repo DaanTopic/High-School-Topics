@@ -88,32 +88,32 @@ public class Boss : MonoBehaviour
                     Dialogue.text = ("看來你找到解藥了!");
                     i++;
                 }
-                else if (gamerules.keyget && i == 8 && dist < minDist)
+                else if (gamerules.keyget && i == 8 )
                 {
                     Dialogue.text = ("接下來是最後一步!");
                     i++;
                 }
-                else if (gamerules.keyget && i == 9 && dist < minDist)
+                else if (gamerules.keyget && i == 9 )
                 {
                     Dialogue.text = ("你等我修好我的車鑰匙");
                     i++;
                 }
-                else if (gamerules.keyget && i == 10 && dist < minDist)
+                else if (gamerules.keyget && i == 10 )
                 {
                     Dialogue.text = ("這樣我們三個才能一起逃脫");
                     i++;
                 }
-                else if (gamerules.keyget && i == 11 && dist < minDist)
+                else if (gamerules.keyget && i == 11 )
                 {
                     Dialogue.text = ("但是修鑰匙的聲音會吸引殭屍");
                     i++; ; ;
                 }
-                else if (gamerules.keyget && i == 12 && dist < minDist)
+                else if (gamerules.keyget && i == 12 )
                 {
                     Dialogue.text = ("不論他們距離你多遠都會朝著你來!");
                     i++;
                 }
-                else if (gamerules.keyget && i == 13 && dist < minDist)
+                else if (gamerules.keyget && i == 13 )
                 {
                     Dialogue.text = ("在這期間,請幫忙防守這裡!");
                     i++;
