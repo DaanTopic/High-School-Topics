@@ -36,5 +36,4 @@ public class PlayerAction : MonoBehaviour
         Debug.Log("buffer");
         anim.SetBool("Kick", false);
     }
-
 }
