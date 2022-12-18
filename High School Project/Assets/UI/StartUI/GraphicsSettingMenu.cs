@@ -6,18 +6,18 @@ using TMPro;
 public class GraphicsSettingMenu : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI Text_1, Text_2, Text_3, Text_4, Text_5;
-    private int index = 2, index_3 = 0;
+    private int index = 2;
     public void FullScreen()
     {
-        if (Text_1.text == "ON")
+        if (Text_1.text == "On")
         {
             Screen.fullScreen = false;
-            Text_1.text = "OFF";
+            Text_1.text = "Off";
         }
         else
         {
             Screen.fullScreen = true;
-            Text_1.text = "ON";
+            Text_1.text = "On";
         }
     }
     public void VSync()
@@ -25,29 +25,29 @@ public class GraphicsSettingMenu : MonoBehaviour
         if (QualitySettings.vSyncCount == 1)
         {
             QualitySettings.vSyncCount = 0;
-            Text_2.text = "OFF";
+            Text_2.text = "Off";
         }
         else
         {
             QualitySettings.vSyncCount = 1;
-            Text_2.text = "ON";
+            Text_2.text = "On";
         }
     }
     public void SetShadows()
     {
         switch (Text_3.text)
         {
-            case "Hard":
+            case "Soft":
                 QualitySettings.shadows = ShadowQuality.All;
-                Text_3.text = "All";
-                break;
-            case "OFF":
-                QualitySettings.shadows = ShadowQuality.HardOnly;
                 Text_3.text = "Hard";
                 break;
-            case "All":
+            case "Off":
+                QualitySettings.shadows = ShadowQuality.HardOnly;
+                Text_3.text = "Soft";
+                break;
+            case "Hard":
                 QualitySettings.shadows = ShadowQuality.Disable;
-                Text_2.text = "OFF";
+                Text_3.text = "Off";
                 break;
         }
     }
