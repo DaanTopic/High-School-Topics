@@ -15,6 +15,9 @@ public class Menu : MonoBehaviour
     }
     public void Countinue()
     {
+        Value.mode = true;
+        SceneManager.LoadScene(sceneValue);
+        Cursor.lockState = CursorLockMode.Locked;
     }
     public void Quit()
     {

@@ -37,34 +37,34 @@ public class GraphicsSettingMenu : MonoBehaviour
     {
         switch (Text_3.text)
         {
-            case "Soft":
-                QualitySettings.shadows = ShadowQuality.All;
+            case "Off":
+                Value.Shadows = 0;
                 Text_3.text = "Hard";
                 break;
-            case "Off":
-                QualitySettings.shadows = ShadowQuality.HardOnly;
+            case "Hard":
+                Value.Shadows = 1;
                 Text_3.text = "Soft";
                 break;
-            case "Hard":
-                QualitySettings.shadows = ShadowQuality.Disable;
+            case "Soft":
+                Value.Shadows = 2;
                 Text_3.text = "Off";
                 break;
         }
     }
     public void SetQuality()
     {
-        index++;
-        if (index > 2) index = 0;
+        index--;
+        if (index < 0) index = 2;
         QualitySettings.SetQualityLevel(index);
-        switch (index)
+        switch (Text_4.text)
         {
-            case 0:
+            case "Meduim":
                 Text_4.text = "Low";
                 break;
-            case 1:
+            case "High":
                 Text_4.text = "Meduim";
                 break;
-            case 2:
+            case "Low":
                 Text_4.text = "High";
                 break;
         }
@@ -73,15 +73,15 @@ public class GraphicsSettingMenu : MonoBehaviour
     {
         switch (Text_5.text)
         {
-            case "1366 X 768":
+            case "1024 X 768":
                 Screen.SetResolution(1920, 1080, true);
                 Text_5.text = "1920 X 1080";
                 break;
-            case "1024 X 768":
+            case "1920 X 1080":
                 Screen.SetResolution(1366, 768, true);
                 Text_5.text = "1366 X 768";
                 break;
-            case "1920 X 1080":
+            case "1366 X 768":
                 Screen.SetResolution(1024, 768, true);
                 Text_5.text = "1024 X 768";
                 break;

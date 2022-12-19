@@ -7,26 +7,27 @@ using TMPro;
 
 public class gamerules : MonoBehaviour
 {
-    double GameCollapseTime;
+    private double GameCollapseTime, doubletime = 1;
     public int schedule = 0;
     public int killamount = 0;
-    public bool keyget = false, Events = false, BossPostEventDialogue = false;
-    float settime,floattime;
-    int inttime;
-    double doubletime=1;
+    public bool keyget = false, Events = false, BossPostEventDialogue = false, End = false;
+    private float settime, floattime;
+    private int inttime;
     [SerializeField] public TextMeshProUGUI TextMission;
     [SerializeField] public TextMeshProUGUI Kill;
-    // Start is called before the first frame update
     void Start()
     {
         TextMission.text = "任務列";
         settime = Time.time;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        doubletime=100-(Time.time-settime);
+        Vector3 bus = GameObject.FindWithTag("Bus").transform.position;
+        Vector3 player1 = GameObject.FindWithTag("Player").transform.position;
+        float ToBus = Vector3.Distance(player1, bus);
+
+
+        doubletime = 100 - (Time.time - settime);
         
         if (settime + 1f < Time.time && schedule == 0)
         {
@@ -71,13 +72,18 @@ public class gamerules : MonoBehaviour
         {
             schedule = Mission(schedule);
         }
-        if(schedule==15 && (Time.time-settime)>10.0f &&(Time.time-settime)<99.0f ){
+        if(schedule == 15 && (Time.time - settime) > 10.0f && (Time.time - settime) < 99.0f ){
             Events=true;
         }
-        if(schedule==15 && (Time.time-settime)>100.0f){
-            Events=false;
-            BossPostEventDialogue=true;
-            schedule =Mission(schedule);
+        if(schedule == 15 && (Time.time - settime) > 100.0f){
+            Events = false;
+            BossPostEventDialogue = true;
+            schedule = Mission(schedule);
+        }
+        if(schedule == 18 && ToBus < 10)
+        {
+            End = true;
+            schedule = Mission(schedule);
         }
         Debug.Log(Time.time-settime);
     }

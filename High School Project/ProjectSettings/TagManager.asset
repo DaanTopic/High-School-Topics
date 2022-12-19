@@ -15,6 +15,7 @@ TagManager:
   - AttackCollider
   - Ranger
   - SoundManager
+  - Bus
   layers:
   - Default
   - TransparentFX

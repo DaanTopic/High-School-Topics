@@ -5,16 +5,16 @@ using UnityEngine;
 public class FallDown : MonoBehaviour
 {
 
-    float settime;
-    void Start()
+    private float setTime;
+    private void Start()
     {
         GetComponent<Animator>().enabled = true;
-        settime = Time.time;
+        setTime = Time.time + 0.1f;
     }
 
-    void Update()
+    private void Update()
     {
-        if (settime + 0.1f < Time.time)
+        if (setTime < Time.time)
         {
             GetComponent<Animator>().enabled = false;
         }

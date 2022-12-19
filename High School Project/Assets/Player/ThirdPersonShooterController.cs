@@ -29,7 +29,6 @@ public class ThirdPersonShooterController : MonoBehaviour
     private StarterAssetsInputs _input;
     private Animator animator;
     public AudioClip LandingAudioClip;
-    [Range(0, 5)] public float GunAudioVolume = 0.5f;
     public ItemSO ItemSO;
 
     private void Awake()
@@ -188,7 +187,7 @@ public class ThirdPersonShooterController : MonoBehaviour
                 _input.shoot = false;
                 ShakeCamera(1f, .1f);
 
-                AudioSource.PlayClipAtPoint(LandingAudioClip, spawnBulletPosition.transform.position, GunAudioVolume);
+                AudioSource.PlayClipAtPoint(LandingAudioClip, spawnBulletPosition.transform.position, Value.GunAudioVolume);
             }
 
         }
