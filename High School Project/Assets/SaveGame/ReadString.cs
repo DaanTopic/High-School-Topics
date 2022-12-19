@@ -80,6 +80,7 @@ public class ReadString : MonoBehaviour
             // Read the entire file and store the string in a variable
             fileString = reader.ReadToEnd();
         }
+        TMP = fileString.Split(',');
         Vector3 setplayer = new Vector3(float.Parse(TMP[0]), float.Parse(TMP[1]), float.Parse(TMP[2]));
         GameObject.FindWithTag("Player").transform.SetPositionAndRotation(setplayer, transform.rotation);
         x.GetComponent<gamerules>().schedule = x.GetComponent<gamerules>().Mission(int.Parse(TMP[3]) - 1);

@@ -51,13 +51,7 @@ public class BuildingManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            bu1.gameObject.SetActive(true);
-            bu2.gameObject.SetActive(true);
-            bu3.gameObject.SetActive(true);
-            panel.gameObject.SetActive(true);
-        }
+
                
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -75,6 +69,8 @@ public class BuildingManager : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && canPlace)
             {
+                var control = GameObject.FindWithTag("Player").GetComponent<InventoryController>();
+                control.BuildUse(resource, 1);
                 PlaceObject();
             }
             if (Input.GetKeyDown(KeyCode.Q))
@@ -177,7 +173,7 @@ public class BuildingManager : MonoBehaviour
         var control = GameObject.FindWithTag("Player").GetComponent<InventoryController>();
         if (control.Selectnumber(resource) > 0)
         {
-            control.BuildUse(resource, 1);
+            //control.BuildUse(resource, 1);
             objUI[1].SetActive(false);
             pendingObjects = Instantiate(gameObjects[index], pos, transform.rotation);
             pendingObjects.GetComponent<Collider>().isTrigger = true;
