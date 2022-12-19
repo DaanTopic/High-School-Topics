@@ -10,6 +10,7 @@ public class FallDown : MonoBehaviour
     {
         GetComponent<Animator>().enabled = true;
         setTime = Time.time + 0.1f;
+        Destroy(gameObject, 7.0f);
     }
 
     private void Update()

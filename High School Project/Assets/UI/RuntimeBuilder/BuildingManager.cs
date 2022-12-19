@@ -19,6 +19,10 @@ public class BuildingManager : MonoBehaviour
 
     public GameObject[] gameObjects, objUI;
     public GameObject pendingObjects;
+    public GameObject bu1;
+    public GameObject bu2;
+    public GameObject bu3;
+    public GameObject panel;
 
     [SerializeField] private Material[] materials;
     [SerializeField] private LayerMask mask;
@@ -47,6 +51,14 @@ public class BuildingManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            bu1.gameObject.SetActive(true);
+            bu2.gameObject.SetActive(true);
+            bu3.gameObject.SetActive(true);
+            panel.gameObject.SetActive(true);
+        }
+               
         if (Input.GetKeyDown(KeyCode.B))
         {
             openUI();
@@ -119,6 +131,10 @@ public class BuildingManager : MonoBehaviour
             aimVirtualCamera.gameObject.SetActive(false);
             aimVirtualCamera.gameObject.SetActive(true);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 13f));
+
+            bu1.gameObject.SetActive(false);
+            bu2.gameObject.SetActive(false);
+            bu3.gameObject.SetActive(false);
         }
         else
         {
@@ -130,6 +146,9 @@ public class BuildingManager : MonoBehaviour
 
             aimVirtualCamera.gameObject.SetActive(false);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 13f));
+            bu1.gameObject.SetActive(true);
+            bu2.gameObject.SetActive(true);
+            bu3.gameObject.SetActive(true);
         }
     }
 

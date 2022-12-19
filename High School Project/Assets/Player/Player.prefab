@@ -1030,11 +1030,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -2004,7 +2004,6 @@ MonoBehaviour:
   aimRig: {fileID: 4302237107539607956}
   num: 1000
   LandingAudioClip: {fileID: 8300000, guid: 88d4ba1627065be4cbb96829790f78c0, type: 3}
-  GunAudioVolume: 1
   ItemSO: {fileID: 11400000, guid: ea8c19e54d5bbe0438738ff6c3550b91, type: 2}
   speed: 1
   m_Image: {fileID: 0}
@@ -2032,7 +2031,7 @@ MonoBehaviour:
     item: {fileID: 11400000, guid: b2cfe56da70f1e84f93daf38ca2f0edd, type: 2}
     itemState: []
   dropClip: {fileID: 8300000, guid: 88d4ba1627065be4cbb96829790f78c0, type: 3}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 5526434263205159475}
   objUi:
   - {fileID: 0}
   - {fileID: 0}
@@ -2079,6 +2078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3c0c23a0163894e85c2f0d71fd9d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 0
   hPBar: {fileID: 0}
   sprite:
   - {fileID: 21300000, guid: 28baa281192c74046987a09f7908b6c5, type: 3}
