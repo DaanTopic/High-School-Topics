@@ -10,7 +10,7 @@ public class gamerules : MonoBehaviour
     private double GameCollapseTime, doubletime = 1;
     public int schedule = 0;
     public int killamount = 0;
-    public bool keyget = false, Events = false, BossPostEventDialogue = false, End = false;
+    public bool keyget = false, Events = false, BossPostEventDialogue = false, End = false, savegame=false;
     private float settime, floattime;
     private int inttime;
     [SerializeField] public TextMeshProUGUI TextMission;
@@ -49,10 +49,12 @@ public class gamerules : MonoBehaviour
         
         if (Input.GetKey(KeyCode.B) && schedule == 4)
         {
+            
             schedule = Mission(schedule);
         }
         if (killamount>=1 && schedule == 5)
         {
+            
             schedule = Mission(schedule);
         }
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)){
@@ -107,12 +109,15 @@ public class gamerules : MonoBehaviour
         }
         if (number == 4)
         {
+            savegame=true;
             TextMission.text = "擊殺一隻殭屍";
             return 5;
         }
         if (number == 5)
         {
             TextMission.text = "往前尋找女孩對話";
+            Debug.Log("--------------------------------------------------------------");
+            
             return 6;
         }
         if (number == 7)
@@ -128,6 +133,7 @@ public class gamerules : MonoBehaviour
         if (number == 9)
         {
             TextMission.text = "去尋找村長";
+            savegame=true;
             return 10;
         }
         if (number == 10)
@@ -143,6 +149,7 @@ public class gamerules : MonoBehaviour
         if (number == 12)
         {
             TextMission.text = "回去與村長對話";
+            savegame=true;
             return 13;
         }
         if (number == 13)
@@ -161,6 +168,7 @@ public class gamerules : MonoBehaviour
         {
             TextMission.text = "回去與村長對話";
             settime = Time.time;
+            savegame=true;
             return 16;
         }
         if (number == 16)

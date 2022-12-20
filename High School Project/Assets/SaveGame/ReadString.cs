@@ -13,7 +13,7 @@ public class ReadString : MonoBehaviour
     private float setTime;
     void Start()
     {
-        setTime = Time.time + 1f;
+        setTime = Time.time + 0.0001f;
         // Vector3 playerPosi = GameObject.FindWithTag("Player").transform.position; 
         // GameObject bossi = GameObject.FindWithTag("Boss");
         // GameObject x = GameObject.FindWithTag("rule");
@@ -40,12 +40,13 @@ public class ReadString : MonoBehaviour
         GameObject x = GameObject.FindWithTag("rule");
         TMP = fileString.Split(',');
         //Debug.Log("MISSION"+TMP[3]+TMP[4]);
-        if (Value.mode && (setTime > Time.time))
+        if ((Value.mode && (setTime < Time.time) ))
         {
             ContinueLoading();
+            Value.mode=false;
         }
         
-        if(x.GetComponent<gamerules>().schedule == 6 || x.GetComponent<gamerules>().schedule == 10 || x.GetComponent<gamerules>().schedule==13 || x.GetComponent<gamerules>().schedule==16){
+        if(x.GetComponent<gamerules>().savegame&&(x.GetComponent<gamerules>().schedule == 6 || x.GetComponent<gamerules>().schedule == 10 || x.GetComponent<gamerules>().schedule==13 || x.GetComponent<gamerules>().schedule==16) ){
             Debug.Log(playerPosi[0]+"------------------------------------------------"+TMP[3]+TMP[4]);
             SaveMission();
         }
@@ -82,7 +83,9 @@ public class ReadString : MonoBehaviour
         }
         TMP = fileString.Split(',');
         Vector3 setplayer = new Vector3(float.Parse(TMP[0]), float.Parse(TMP[1]), float.Parse(TMP[2]));
+        
         GameObject.FindWithTag("Player").transform.SetPositionAndRotation(setplayer, transform.rotation);
+        Debug.Log(float.Parse(TMP[0]));
         x.GetComponent<gamerules>().schedule = x.GetComponent<gamerules>().Mission(int.Parse(TMP[3]) - 1);
         x.GetComponent<gamerules>().killamount = int.Parse(TMP[4]);
 
