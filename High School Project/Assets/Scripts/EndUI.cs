@@ -30,21 +30,21 @@ public class EndUI : MonoBehaviour
        // Debug.Log(end.rectTransform.position);
        // Debug.Log(colorA);
         GameObject end1 = GameObject.FindWithTag("rule");
-        //if(end1.GetComponent<gamerules>().End && (Time.time-TimeFPS)>=0.016f && colorA<=1f){
-        //    dead.text = "Congratulations";
-        //    end.rectTransform.position=new Vector3(957f,543f,0f);
-        //    TimeFPS=Time.time;
-        //    Debug.Log("--------------------------------------");
-        //    end.color = new Color(0 , 0 ,0 ,colorA);
-        //    if(colorA<1){
-        //        colorA += 0.01f;
-        //        end.color = new Color(0 , 0 ,0 ,colorA);
-        //    }
-        //    else
-        //    {
-        //        SceneManager.LoadScene(1);
-        //    }
-        //}
+        if(end1.GetComponent<gamerules>().End && (Time.time-TimeFPS)>=0.016f && colorA<=1f){
+           dead.text = "Congratulations";
+           end.rectTransform.position=new Vector3(957f,543f,0f);
+           TimeFPS=Time.time;
+           Debug.Log("--------------------------------------");
+           end.color = new Color(0 , 0 ,0 ,colorA);
+           if(colorA<1){
+               colorA += 0.01f;
+               end.color = new Color(0 , 0 ,0 ,colorA);
+           }
+           else
+           {
+               SceneManager.LoadScene(0);
+           }
+        }
             if (a <= 0 && (Time.time - TimeFPS) >= 0.016f && colorA <= 1f)
             {
                 dead.text = "You Dead";
@@ -61,7 +61,7 @@ public class EndUI : MonoBehaviour
             }
             if(colorA >= 1.0f)
             {
-                 SceneManager.LoadScene(1);
+                 SceneManager.LoadScene(0);
                  Cursor.lockState = CursorLockMode.Confined;
              }
   

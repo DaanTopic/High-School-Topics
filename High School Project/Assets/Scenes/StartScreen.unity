@@ -4893,7 +4893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d1c562076555544a81864126e99f949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneValue: 0
+  sceneValue: 1
   canvasGroup: {fileID: 708969304}
   loadingScene: {fileID: 708969300}
   image: {fileID: 934134666}
@@ -5600,7 +5600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d1c562076555544a81864126e99f949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneValue: 0
+  sceneValue: 1
   canvasGroup: {fileID: 708969304}
   loadingScene: {fileID: 708969300}
   image: {fileID: 934134666}

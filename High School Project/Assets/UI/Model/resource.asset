@@ -16,7 +16,7 @@ MonoBehaviour:
   <MaxStackSize>k__BackingField: 50
   <Name>k__BackingField: resource
   <Description>k__BackingField: Resources needed to build the building.
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225,
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 26ea17583b4f35647b40d61db9cef048,
     type: 3}
   <DefaultParametersList>k__BackingField: []
   modifiersData:

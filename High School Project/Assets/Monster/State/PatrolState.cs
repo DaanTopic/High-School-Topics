@@ -11,7 +11,7 @@ namespace XANFSM.zombie
         GameObject player;
         NavMeshAgent navAgent;
         Animator anim;
-        float PatrolRange = 5f, PatrolError = 1f, AIx, AIz;
+        float PatrolRange = 15f, PatrolError = 1f, AIx, AIz;
         Vector3 home, setAI, ran;
         Mover mover;
 
