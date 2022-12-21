@@ -14,6 +14,7 @@ public class PressKeyToStart : MonoBehaviour
         if (Input.anyKeyDown)
         {
             Time.timeScale = 1f;
+            GetComponent<PressKeyToStart>().enabled = false;
             gameObject.SetActive(false);
         }
     }
