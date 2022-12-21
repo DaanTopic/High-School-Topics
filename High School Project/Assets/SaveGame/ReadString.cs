@@ -8,7 +8,7 @@ public class ReadString : MonoBehaviour
     // Start is called before the first frame update
     
     
-    public string[] TMP = {};
+    public string[] TMP;
     public string fileString;
     private float setTime;
     void Start()
@@ -40,13 +40,15 @@ public class ReadString : MonoBehaviour
         GameObject x = GameObject.FindWithTag("rule");
         TMP = fileString.Split(',');
         //Debug.Log("MISSION"+TMP[3]+TMP[4]);
-        if ((Value.mode && (setTime < Time.time) ))
+        if ((Value.mode && (setTime < Time.time)))
         {
             ContinueLoading();
-            Value.mode=false;
+            Value.mode = false;
+            x.GetComponent<gamerules>().savegame = false;
         }
         
-        if(x.GetComponent<gamerules>().savegame&&(x.GetComponent<gamerules>().schedule == 6 || x.GetComponent<gamerules>().schedule == 10 || x.GetComponent<gamerules>().schedule==13 || x.GetComponent<gamerules>().schedule==16) ){
+        if(x.GetComponent<gamerules>().savegame)
+        {
             Debug.Log(playerPosi[0]+"------------------------------------------------"+TMP[3]+TMP[4]);
             SaveMission();
         }

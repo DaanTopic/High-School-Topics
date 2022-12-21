@@ -75,7 +75,7 @@ public class gamerules : MonoBehaviour
             schedule = Mission(schedule);
         }
         if(schedule == 15 && (Time.time - settime) > 10.0f && (Time.time - settime) < 99.0f ){
-            Events=true;
+            Events = true;
         }
         if(schedule == 15 && (Time.time - settime) > 100.0f){
             Events = false;
@@ -109,12 +109,12 @@ public class gamerules : MonoBehaviour
         }
         if (number == 4)
         {
-            savegame=true;
             TextMission.text = "擊殺一隻殭屍";
             return 5;
         }
         if (number == 5)
         {
+            savegame = true;
             TextMission.text = "往前尋找女孩對話";
             Debug.Log("--------------------------------------------------------------");
             
@@ -133,11 +133,11 @@ public class gamerules : MonoBehaviour
         if (number == 9)
         {
             TextMission.text = "去尋找村長";
-            savegame=true;
             return 10;
         }
         if (number == 10)
         {
+            savegame = true;
             TextMission.text = "";
             return 11;
         }
@@ -149,11 +149,11 @@ public class gamerules : MonoBehaviour
         if (number == 12)
         {
             TextMission.text = "回去與村長對話";
-            savegame=true;
             return 13;
         }
         if (number == 13)
         {
+            savegame = true;
             TextMission.text = " ";
             settime = Time.time;
             return 14;
@@ -168,11 +168,11 @@ public class gamerules : MonoBehaviour
         {
             TextMission.text = "回去與村長對話";
             settime = Time.time;
-            savegame=true;
             return 16;
         }
         if (number == 16)
         {
+            savegame = true;
             TextMission.text = "";
             return 17;
         }

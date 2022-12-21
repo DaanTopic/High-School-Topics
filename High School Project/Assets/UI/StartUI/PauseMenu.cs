@@ -6,20 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera pause;
     public GameObject pauseMenuUI, inGamePanel;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pause.gameObject.SetActive(true);
             Pause();
             Cursor.lockState = CursorLockMode.Confined;
         }
     }
     public void Resume()
     {
-        pause.gameObject.SetActive(false);
         inGamePanel.SetActive(true);
         Time.timeScale = 1f;
         pauseMenuUI.SetActive(false);
